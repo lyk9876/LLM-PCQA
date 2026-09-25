@@ -1,0 +1,20 @@
+{
+  "num_patches": 560,
+  "chamfer_distance": 0.02077275927710746,
+  "normal_error": 0.194526202011288,
+  "curvature_error": 0.0984084619658201,
+  "qnet_scores_01": {
+    "cleanliness": 0.1954464611331267,
+    "structure_fidelity": 0.518309676115002,
+    "surface_fidelity": 0.4818567289305585,
+    "sampling_regularity": 0.5002235180565289,
+    "overall": 0.36859770704592976
+  },
+  "qnet_scores_1to5": {
+    "cleanliness": 1.7817858445325068,
+    "structure_fidelity": 3.073238704460008,
+    "surface_fidelity": 2.927426915722234,
+    "sampling_regularity": 3.0008940722261155,
+    "overall": 2.474390828183719
+  }
+}

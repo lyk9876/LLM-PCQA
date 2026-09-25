@@ -1,0 +1,23 @@
+{
+  "scope": "PF-Train/Test overlap shapes only; full-cloud visualization only; no ROI",
+  "shapes": [
+    "cup",
+    "dino",
+    "gargoyle"
+  ],
+  "sigmas": [
+    "0.005",
+    "0.010",
+    "0.015",
+    "0.020",
+    "0.025"
+  ],
+  "methods": [
+    "Noisy",
+    "Baseline",
+    "Ours",
+    "GT"
+  ],
+  "source": "/data/zhangzy/zzyy/PointFilter_frozen_quality_stage3/punet30_overlap_testasval_qnet_testasval_dynamic_fairsteps_seed2026/test_fullcloud_all/render",
+  "combined_overview": "/data/zhangzy/zzyy/PointFilter_frozen_quality_stage3/punet30_overlap_testasval_qnet_testasval_dynamic_fairsteps_seed2026/test_train_overlap_3shapes_fullcloud/cup_dino_gargoyle_all_sigmas_fullcloud.png"
+}

@@ -1,0 +1,6 @@
+{
+  "Noisy": 0.02538221118243948,
+  "Baseline PointFilter": 0.011913304038179525,
+  "Baseline + QNet": 0.011744711187861825,
+  "qnet_vs_baseline_improvement_percent": 1.4151645066506926
+}

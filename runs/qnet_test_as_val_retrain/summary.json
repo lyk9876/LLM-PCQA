@@ -1,0 +1,268 @@
+{
+  "status": "training_complete",
+  "best_epoch": 61,
+  "epochs_ran": 76,
+  "elapsed_seconds": 277.64953231811523,
+  "checkpoint": "/data/zhangzy/zzyy/PUNet/Gaussion/patch_quality_network/test_as_val_qnet_retrain_seed2026/run/best_patch_qnet_test_as_val_v1.pth",
+  "d_real_selection_val_original_test": {
+    "real_loss_normalized": 0.012981469587733349,
+    "overall": {
+      "count": 168,
+      "plcc": 0.9098062760057124,
+      "srcc": 0.8360759173399612,
+      "krcc": 0.6859668727307925,
+      "mse": 0.0741371288895607,
+      "mae": 0.2011626958847046
+    },
+    "per_dimension": {
+      "cleanliness": {
+        "count": 168,
+        "plcc": 0.8717207470288252,
+        "srcc": 0.841679525689097,
+        "krcc": 0.7038121704369288,
+        "mse": 0.1786355972290039,
+        "mae": 0.3044968247413635
+      },
+      "structure_fidelity": {
+        "count": 112,
+        "plcc": 0.8749021525607511,
+        "srcc": 0.8250198716057122,
+        "krcc": 0.6766264800354462,
+        "mse": 0.07526176422834396,
+        "mae": 0.1907597929239273
+      },
+      "surface_fidelity": {
+        "count": 168,
+        "plcc": 0.8809414849699888,
+        "srcc": 0.7873694046939025,
+        "krcc": 0.6447949345688928,
+        "mse": 0.051132090389728546,
+        "mae": 0.12652213871479034
+      },
+      "sampling_regularity": {
+        "count": 168,
+        "plcc": 0.9285555482480052,
+        "srcc": 0.8357284061241781,
+        "krcc": 0.687418601729482,
+        "mse": 0.03689447045326233,
+        "mae": 0.08894504606723785
+      },
+      "overall": {
+        "count": 168,
+        "plcc": 0.9098062760057124,
+        "srcc": 0.8360759173399612,
+        "krcc": 0.6859668727307925,
+        "mse": 0.0741371288895607,
+        "mae": 0.2011626958847046
+      }
+    },
+    "samples": 168
+  },
+  "d_real_holdout_test_original_val": {
+    "real_loss_normalized": 0.036999112367630003,
+    "overall": {
+      "count": 144,
+      "plcc": 0.738632736998083,
+      "srcc": 0.7496717429000804,
+      "krcc": 0.6071084627601069,
+      "mse": 0.18900322914123535,
+      "mae": 0.3098093271255493
+    },
+    "per_dimension": {
+      "cleanliness": {
+        "count": 144,
+        "plcc": 0.646086681019814,
+        "srcc": 0.6299527896429329,
+        "krcc": 0.5025651387055127,
+        "mse": 0.49189984798431396,
+        "mae": 0.4994250535964966
+      },
+      "structure_fidelity": {
+        "count": 96,
+        "plcc": 0.5749491198363008,
+        "srcc": 0.6027143772454306,
+        "krcc": 0.4946706830490282,
+        "mse": 0.19644691050052643,
+        "mae": 0.302813857793808
+      },
+      "surface_fidelity": {
+        "count": 144,
+        "plcc": 0.6225897418415014,
+        "srcc": 0.5917520186618125,
+        "krcc": 0.48483824851695634,
+        "mse": 0.15689152479171753,
+        "mae": 0.2506773769855499
+      },
+      "sampling_regularity": {
+        "count": 144,
+        "plcc": 0.6793801635267576,
+        "srcc": 0.6666597039753044,
+        "krcc": 0.5462121176420378,
+        "mse": 0.1486159712076187,
+        "mae": 0.22234517335891724
+      },
+      "overall": {
+        "count": 144,
+        "plcc": 0.738632736998083,
+        "srcc": 0.7496717429000804,
+        "krcc": 0.6071084627601069,
+        "mse": 0.18900322914123535,
+        "mae": 0.3098093271255493
+      }
+    },
+    "samples": 144
+  },
+  "d_real_selection_val_seen_overlap": {
+    "real_loss_normalized": 0.012325527146458626,
+    "overall": {
+      "count": 72,
+      "plcc": 0.9110063106851831,
+      "srcc": 0.8773099965718589,
+      "krcc": 0.736503038604955,
+      "mse": 0.07428479194641113,
+      "mae": 0.19371916353702545
+    },
+    "per_dimension": {
+      "cleanliness": {
+        "count": 72,
+        "plcc": 0.9051194136063407,
+        "srcc": 0.8869817111355167,
+        "krcc": 0.7542468530585682,
+        "mse": 0.12784555554389954,
+        "mae": 0.2559086084365845
+      },
+      "structure_fidelity": {
+        "count": 48,
+        "plcc": 0.8776912819175116,
+        "srcc": 0.8357958364521536,
+        "krcc": 0.6894963875832671,
+        "mse": 0.062470126897096634,
+        "mae": 0.1747790426015854
+      },
+      "surface_fidelity": {
+        "count": 72,
+        "plcc": 0.8343344480039889,
+        "srcc": 0.7643265916949432,
+        "krcc": 0.6283889242307621,
+        "mse": 0.07049864530563354,
+        "mae": 0.14631503820419312
+      },
+      "sampling_regularity": {
+        "count": 72,
+        "plcc": 0.9075515011346503,
+        "srcc": 0.8436875855844099,
+        "krcc": 0.7010367484532857,
+        "mse": 0.05415583401918411,
+        "mae": 0.10387331992387772
+      },
+      "overall": {
+        "count": 72,
+        "plcc": 0.9110063106851831,
+        "srcc": 0.8773099965718589,
+        "krcc": 0.736503038604955,
+        "mse": 0.07428479194641113,
+        "mae": 0.19371916353702545
+      }
+    },
+    "samples": 72
+  },
+  "d_real_selection_val_unseen": {
+    "real_loss_normalized": 0.013584251826008161,
+    "overall": {
+      "count": 96,
+      "plcc": 0.9088653892620671,
+      "srcc": 0.8066747890626039,
+      "krcc": 0.6531875748007638,
+      "mse": 0.07402636855840683,
+      "mae": 0.20674534142017365
+    },
+    "per_dimension": {
+      "cleanliness": {
+        "count": 96,
+        "plcc": 0.8493945526401068,
+        "srcc": 0.801795211137866,
+        "krcc": 0.6606028669434217,
+        "mse": 0.21672813594341278,
+        "mae": 0.34093794226646423
+      },
+      "structure_fidelity": {
+        "count": 64,
+        "plcc": 0.8788279696850598,
+        "srcc": 0.8194093140376327,
+        "krcc": 0.6742515569407586,
+        "mse": 0.08485548943281174,
+        "mae": 0.20274534821510315
+      },
+      "surface_fidelity": {
+        "count": 96,
+        "plcc": 0.9162924611070535,
+        "srcc": 0.8052859584368298,
+        "krcc": 0.6609289078689521,
+        "mse": 0.03660717234015465,
+        "mae": 0.11167747527360916
+      },
+      "sampling_regularity": {
+        "count": 96,
+        "plcc": 0.9489119825116044,
+        "srcc": 0.8315828966162396,
+        "krcc": 0.6825118082649212,
+        "mse": 0.02394845522940159,
+        "mae": 0.0777488425374031
+      },
+      "overall": {
+        "count": 96,
+        "plcc": 0.9088653892620671,
+        "srcc": 0.8066747890626039,
+        "krcc": 0.6531875748007638,
+        "mse": 0.07402636855840683,
+        "mae": 0.20674534142017365
+      }
+    },
+    "samples": 96
+  },
+  "d_cf_cleanliness_train": {
+    "families": 224,
+    "chain_accuracy": 1.0,
+    "adjacent_pair_accuracy": 1.0,
+    "margin_chain_accuracy": 0.9866071428571429,
+    "rank_loss": 3.640252232019391e-05
+  },
+  "d_cf_structure_train": {
+    "families": 164,
+    "chain_accuracy": 1.0,
+    "adjacent_pair_accuracy": 1.0,
+    "margin_chain_accuracy": 0.8292682926829268,
+    "rank_loss": 0.001478249884464524
+  },
+  "data_counts": {
+    "d_real_train": 720,
+    "d_real_selection_val_original_test": 168,
+    "d_real_holdout_test_original_val": 144,
+    "d_real_selection_val_seen_overlap": 72,
+    "d_real_selection_val_unseen": 96,
+    "d_cf_cleanliness_train_families": 224,
+    "d_cf_structure_train_families": 164
+  },
+  "split_semantics": {
+    "selection_val_seen_overlap_shapes": [
+      "cup",
+      "dino",
+      "gargoyle"
+    ],
+    "selection_val_unseen_shapes": [
+      "bunny",
+      "cad",
+      "rolling_stage",
+      "turbine_Lp"
+    ],
+    "holdout_test_shapes": [
+      "armadillo",
+      "focal-octa",
+      "octa-flower",
+      "pulley",
+      "retinal",
+      "vaselion"
+    ],
+    "warning": "Original Test was used for checkpoint selection; its metrics are test-tuned and biased."
+  }
+}

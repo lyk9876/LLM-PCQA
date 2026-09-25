@@ -1,0 +1,235 @@
+{
+  "scope": "all 7 Test shapes x 5 noise levels; full-cloud only",
+  "shapes": [
+    "bunny",
+    "cad",
+    "dino",
+    "gargoyle",
+    "rolling_stage",
+    "turbine_Lp",
+    "cup"
+  ],
+  "sigmas": [
+    "0.005",
+    "0.010",
+    "0.015",
+    "0.020",
+    "0.025"
+  ],
+  "cases": [
+    {
+      "shape": "bunny",
+      "sigma": "0.005",
+      "points": 50000,
+      "work_dir": "/data/zhangzy/zzyy/PointFilter_frozen_quality_stage3/punet30_overlap_testasval_qnet_testasval_dynamic_fairsteps_seed2026/test_fullcloud_all/work/bunny/sigma_0.005"
+    },
+    {
+      "shape": "bunny",
+      "sigma": "0.010",
+      "points": 50000,
+      "work_dir": "/data/zhangzy/zzyy/PointFilter_frozen_quality_stage3/punet30_overlap_testasval_qnet_testasval_dynamic_fairsteps_seed2026/test_fullcloud_all/work/bunny/sigma_0.010"
+    },
+    {
+      "shape": "bunny",
+      "sigma": "0.015",
+      "points": 50000,
+      "work_dir": "/data/zhangzy/zzyy/PointFilter_frozen_quality_stage3/punet30_overlap_testasval_qnet_testasval_dynamic_fairsteps_seed2026/test_fullcloud_all/work/bunny/sigma_0.015"
+    },
+    {
+      "shape": "bunny",
+      "sigma": "0.020",
+      "points": 50000,
+      "work_dir": "/data/zhangzy/zzyy/PointFilter_frozen_quality_stage3/punet30_overlap_testasval_qnet_testasval_dynamic_fairsteps_seed2026/test_fullcloud_all/work/bunny/sigma_0.020"
+    },
+    {
+      "shape": "bunny",
+      "sigma": "0.025",
+      "points": 50000,
+      "work_dir": "/data/zhangzy/zzyy/PointFilter_frozen_quality_stage3/punet30_overlap_testasval_qnet_testasval_dynamic_fairsteps_seed2026/test_fullcloud_all/work/bunny/sigma_0.025"
+    },
+    {
+      "shape": "cad",
+      "sigma": "0.005",
+      "points": 50000,
+      "work_dir": "/data/zhangzy/zzyy/PointFilter_frozen_quality_stage3/punet30_overlap_testasval_qnet_testasval_dynamic_fairsteps_seed2026/test_fullcloud_all/work/cad/sigma_0.005"
+    },
+    {
+      "shape": "cad",
+      "sigma": "0.010",
+      "points": 50000,
+      "work_dir": "/data/zhangzy/zzyy/PointFilter_frozen_quality_stage3/punet30_overlap_testasval_qnet_testasval_dynamic_fairsteps_seed2026/test_fullcloud_all/work/cad/sigma_0.010"
+    },
+    {
+      "shape": "cad",
+      "sigma": "0.015",
+      "points": 50000,
+      "work_dir": "/data/zhangzy/zzyy/PointFilter_frozen_quality_stage3/punet30_overlap_testasval_qnet_testasval_dynamic_fairsteps_seed2026/test_fullcloud_all/work/cad/sigma_0.015"
+    },
+    {
+      "shape": "cad",
+      "sigma": "0.020",
+      "points": 50000,
+      "work_dir": "/data/zhangzy/zzyy/PointFilter_frozen_quality_stage3/punet30_overlap_testasval_qnet_testasval_dynamic_fairsteps_seed2026/test_fullcloud_all/work/cad/sigma_0.020"
+    },
+    {
+      "shape": "cad",
+      "sigma": "0.025",
+      "points": 50000,
+      "work_dir": "/data/zhangzy/zzyy/PointFilter_frozen_quality_stage3/punet30_overlap_testasval_qnet_testasval_dynamic_fairsteps_seed2026/test_fullcloud_all/work/cad/sigma_0.025"
+    },
+    {
+      "shape": "dino",
+      "sigma": "0.005",
+      "points": 50000,
+      "work_dir": "/data/zhangzy/zzyy/PointFilter_frozen_quality_stage3/punet30_overlap_testasval_qnet_testasval_dynamic_fairsteps_seed2026/test_fullcloud_all/work/dino/sigma_0.005"
+    },
+    {
+      "shape": "dino",
+      "sigma": "0.010",
+      "points": 50000,
+      "work_dir": "/data/zhangzy/zzyy/PointFilter_frozen_quality_stage3/punet30_overlap_testasval_qnet_testasval_dynamic_fairsteps_seed2026/test_fullcloud_all/work/dino/sigma_0.010"
+    },
+    {
+      "shape": "dino",
+      "sigma": "0.015",
+      "points": 50000,
+      "work_dir": "/data/zhangzy/zzyy/PointFilter_frozen_quality_stage3/punet30_overlap_testasval_qnet_testasval_dynamic_fairsteps_seed2026/test_fullcloud_all/work/dino/sigma_0.015"
+    },
+    {
+      "shape": "dino",
+      "sigma": "0.020",
+      "points": 50000,
+      "work_dir": "/data/zhangzy/zzyy/PointFilter_frozen_quality_stage3/punet30_overlap_testasval_qnet_testasval_dynamic_fairsteps_seed2026/test_fullcloud_all/work/dino/sigma_0.020"
+    },
+    {
+      "shape": "dino",
+      "sigma": "0.025",
+      "points": 50000,
+      "work_dir": "/data/zhangzy/zzyy/PointFilter_frozen_quality_stage3/punet30_overlap_testasval_qnet_testasval_dynamic_fairsteps_seed2026/test_fullcloud_all/work/dino/sigma_0.025"
+    },
+    {
+      "shape": "gargoyle",
+      "sigma": "0.005",
+      "points": 50000,
+      "work_dir": "/data/zhangzy/zzyy/PointFilter_frozen_quality_stage3/punet30_overlap_testasval_qnet_testasval_dynamic_fairsteps_seed2026/test_fullcloud_all/work/gargoyle/sigma_0.005"
+    },
+    {
+      "shape": "gargoyle",
+      "sigma": "0.010",
+      "points": 50000,
+      "work_dir": "/data/zhangzy/zzyy/PointFilter_frozen_quality_stage3/punet30_overlap_testasval_qnet_testasval_dynamic_fairsteps_seed2026/test_fullcloud_all/work/gargoyle/sigma_0.010"
+    },
+    {
+      "shape": "gargoyle",
+      "sigma": "0.015",
+      "points": 50000,
+      "work_dir": "/data/zhangzy/zzyy/PointFilter_frozen_quality_stage3/punet30_overlap_testasval_qnet_testasval_dynamic_fairsteps_seed2026/test_fullcloud_all/work/gargoyle/sigma_0.015"
+    },
+    {
+      "shape": "gargoyle",
+      "sigma": "0.020",
+      "points": 50000,
+      "work_dir": "/data/zhangzy/zzyy/PointFilter_frozen_quality_stage3/punet30_overlap_testasval_qnet_testasval_dynamic_fairsteps_seed2026/test_fullcloud_all/work/gargoyle/sigma_0.020"
+    },
+    {
+      "shape": "gargoyle",
+      "sigma": "0.025",
+      "points": 50000,
+      "work_dir": "/data/zhangzy/zzyy/PointFilter_frozen_quality_stage3/punet30_overlap_testasval_qnet_testasval_dynamic_fairsteps_seed2026/test_fullcloud_all/work/gargoyle/sigma_0.025"
+    },
+    {
+      "shape": "rolling_stage",
+      "sigma": "0.005",
+      "points": 50000,
+      "work_dir": "/data/zhangzy/zzyy/PointFilter_frozen_quality_stage3/punet30_overlap_testasval_qnet_testasval_dynamic_fairsteps_seed2026/test_fullcloud_all/work/rolling_stage/sigma_0.005"
+    },
+    {
+      "shape": "rolling_stage",
+      "sigma": "0.010",
+      "points": 50000,
+      "work_dir": "/data/zhangzy/zzyy/PointFilter_frozen_quality_stage3/punet30_overlap_testasval_qnet_testasval_dynamic_fairsteps_seed2026/test_fullcloud_all/work/rolling_stage/sigma_0.010"
+    },
+    {
+      "shape": "rolling_stage",
+      "sigma": "0.015",
+      "points": 50000,
+      "work_dir": "/data/zhangzy/zzyy/PointFilter_frozen_quality_stage3/punet30_overlap_testasval_qnet_testasval_dynamic_fairsteps_seed2026/test_fullcloud_all/work/rolling_stage/sigma_0.015"
+    },
+    {
+      "shape": "rolling_stage",
+      "sigma": "0.020",
+      "points": 50000,
+      "work_dir": "/data/zhangzy/zzyy/PointFilter_frozen_quality_stage3/punet30_overlap_testasval_qnet_testasval_dynamic_fairsteps_seed2026/test_fullcloud_all/work/rolling_stage/sigma_0.020"
+    },
+    {
+      "shape": "rolling_stage",
+      "sigma": "0.025",
+      "points": 50000,
+      "work_dir": "/data/zhangzy/zzyy/PointFilter_frozen_quality_stage3/punet30_overlap_testasval_qnet_testasval_dynamic_fairsteps_seed2026/test_fullcloud_all/work/rolling_stage/sigma_0.025"
+    },
+    {
+      "shape": "turbine_Lp",
+      "sigma": "0.005",
+      "points": 50000,
+      "work_dir": "/data/zhangzy/zzyy/PointFilter_frozen_quality_stage3/punet30_overlap_testasval_qnet_testasval_dynamic_fairsteps_seed2026/test_fullcloud_all/work/turbine_Lp/sigma_0.005"
+    },
+    {
+      "shape": "turbine_Lp",
+      "sigma": "0.010",
+      "points": 50000,
+      "work_dir": "/data/zhangzy/zzyy/PointFilter_frozen_quality_stage3/punet30_overlap_testasval_qnet_testasval_dynamic_fairsteps_seed2026/test_fullcloud_all/work/turbine_Lp/sigma_0.010"
+    },
+    {
+      "shape": "turbine_Lp",
+      "sigma": "0.015",
+      "points": 50000,
+      "work_dir": "/data/zhangzy/zzyy/PointFilter_frozen_quality_stage3/punet30_overlap_testasval_qnet_testasval_dynamic_fairsteps_seed2026/test_fullcloud_all/work/turbine_Lp/sigma_0.015"
+    },
+    {
+      "shape": "turbine_Lp",
+      "sigma": "0.020",
+      "points": 50000,
+      "work_dir": "/data/zhangzy/zzyy/PointFilter_frozen_quality_stage3/punet30_overlap_testasval_qnet_testasval_dynamic_fairsteps_seed2026/test_fullcloud_all/work/turbine_Lp/sigma_0.020"
+    },
+    {
+      "shape": "turbine_Lp",
+      "sigma": "0.025",
+      "points": 50000,
+      "work_dir": "/data/zhangzy/zzyy/PointFilter_frozen_quality_stage3/punet30_overlap_testasval_qnet_testasval_dynamic_fairsteps_seed2026/test_fullcloud_all/work/turbine_Lp/sigma_0.025"
+    },
+    {
+      "shape": "cup",
+      "sigma": "0.005",
+      "points": 50000,
+      "work_dir": "/data/zhangzy/zzyy/PointFilter_frozen_quality_stage3/punet30_overlap_testasval_qnet_testasval_dynamic_fairsteps_seed2026/test_fullcloud_all/work/cup/sigma_0.005"
+    },
+    {
+      "shape": "cup",
+      "sigma": "0.010",
+      "points": 50000,
+      "work_dir": "/data/zhangzy/zzyy/PointFilter_frozen_quality_stage3/punet30_overlap_testasval_qnet_testasval_dynamic_fairsteps_seed2026/test_fullcloud_all/work/cup/sigma_0.010"
+    },
+    {
+      "shape": "cup",
+      "sigma": "0.015",
+      "points": 50000,
+      "work_dir": "/data/zhangzy/zzyy/PointFilter_frozen_quality_stage3/punet30_overlap_testasval_qnet_testasval_dynamic_fairsteps_seed2026/test_fullcloud_all/work/cup/sigma_0.015"
+    },
+    {
+      "shape": "cup",
+      "sigma": "0.020",
+      "points": 50000,
+      "work_dir": "/data/zhangzy/zzyy/PointFilter_frozen_quality_stage3/punet30_overlap_testasval_qnet_testasval_dynamic_fairsteps_seed2026/test_fullcloud_all/work/cup/sigma_0.020"
+    },
+    {
+      "shape": "cup",
+      "sigma": "0.025",
+      "points": 50000,
+      "work_dir": "/data/zhangzy/zzyy/PointFilter_frozen_quality_stage3/punet30_overlap_testasval_qnet_testasval_dynamic_fairsteps_seed2026/test_fullcloud_all/work/cup/sigma_0.025"
+    }
+  ],
+  "baseline_checkpoint": "/data/zhangzy/zzyy/Pointfilter-master/Summary/pre_train_model/model_full_ae.pth",
+  "baseline_sha256": "86600e6d57fab7887fbda0cf54292578a52d956c36766a130d1e32a475d18cee",
+  "ours_checkpoint": "/data/zhangzy/zzyy/PointFilter_frozen_quality_stage3/punet30_overlap_testasval_qnet_testasval_dynamic_fairsteps_seed2026/best_validation.pth",
+  "ours_sha256": "d1e6b776311417199d97655d2b6ff8492727b21f1dfbc826c067cf72fa6b1aa8"
+}

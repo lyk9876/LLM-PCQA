@@ -1,0 +1,274 @@
+{
+  "status": "train_test_as_validation_leakage_complete",
+  "variant": "quality_guided_full",
+  "lambda_q": 0.01,
+  "best_epoch": 4,
+  "best_validation": {
+    "num_patches": 560,
+    "chamfer_distance": 0.019478630393444163,
+    "normal_error": 0.1812469649311554,
+    "curvature_error": 0.09677916697026896,
+    "qnet_scores_01": {
+      "cleanliness": 0.19429724420686917,
+      "structure_fidelity": 0.5201496477105788,
+      "surface_fidelity": 0.4798249380396945,
+      "sampling_regularity": 0.5018239425761359,
+      "overall": 0.36859503542738303
+    },
+    "qnet_scores_1to5": {
+      "cleanliness": 1.7771889768274767,
+      "structure_fidelity": 3.0805985908423152,
+      "surface_fidelity": 2.919299752158778,
+      "sampling_regularity": 3.0072957703045438,
+      "overall": 2.474380141709532
+    }
+  },
+  "best_checkpoint": "/data/zhangzy/zzyy/PointFilter_frozen_quality_stage3/punet30_overlap_testasval_qnet_testasval_dynamic_fairsteps_seed2026/best_validation.pth",
+  "validation_predictions": "/data/zhangzy/zzyy/PointFilter_frozen_quality_stage3/punet30_overlap_testasval_qnet_testasval_dynamic_fairsteps_seed2026/best_validation_predictions.npz",
+  "validation_records": "/data/zhangzy/zzyy/PointFilter_frozen_quality_stage3/punet30_overlap_testasval_qnet_testasval_dynamic_fairsteps_seed2026/best_validation_records.jsonl",
+  "qnet_state_sha256_before": "47c2e01d153fcebe4a791df8da79edab0ce3adb7943016169ac810b5057e1cb3",
+  "qnet_state_sha256_after": "47c2e01d153fcebe4a791df8da79edab0ce3adb7943016169ac810b5057e1cb3",
+  "qnet_checkpoint_sha256_before": "d1845892739b7fb2fe9263cc0130fdfb62e2f2c64483c4a925b22de7bb9e2fbc",
+  "qnet_checkpoint_sha256_after": "d1845892739b7fb2fe9263cc0130fdfb62e2f2c64483c4a925b22de7bb9e2fbc",
+  "qnet_unchanged": true,
+  "test_accessed": true,
+  "test_access_reason": "intentional Test-as-Validation checkpoint-selection ablation",
+  "split_override": {
+    "original_split": "/data/zhangzy/zzyy/PUNet/Gaussion/manifests/shape_split_seed2026_train_test_overlap.json",
+    "effective_split": "/data/zhangzy/zzyy/PointFilter_frozen_quality_stage3/punet30_overlap_testasval_qnet_testasval_dynamic_fairsteps_seed2026/effective_shape_split.json",
+    "requested_train_test_overlap_shapes": [
+      "dino",
+      "cup",
+      "gargoyle"
+    ],
+    "location_before": {
+      "dino": {
+        "in_train": true,
+        "in_val": false,
+        "in_test": true
+      },
+      "cup": {
+        "in_train": true,
+        "in_val": false,
+        "in_test": true
+      },
+      "gargoyle": {
+        "in_train": true,
+        "in_val": false,
+        "in_test": true
+      }
+    },
+    "train_count_before": 30,
+    "train_count_after": 30,
+    "val_count_before": 6,
+    "val_count_after": 7,
+    "test_count_before": 7,
+    "test_count_after": 7,
+    "train_test_overlap": [
+      "cup",
+      "dino",
+      "gargoyle"
+    ],
+    "train_test_overlap_is_intentional": true,
+    "validation_uses_test": true,
+    "excluded_original_validation_shapes": [
+      "armadillo",
+      "focal-octa",
+      "octa-flower",
+      "pulley",
+      "retinal",
+      "vaselion"
+    ],
+    "evaluation_semantics": "TEST-AS-VALIDATION LEAKAGE ABLATION: Test drives checkpoint selection; overlap shapes are seen in Train",
+    "train_shapes_after": [
+      "big_girl",
+      "block",
+      "boy01",
+      "boy02",
+      "bumpy_torus",
+      "ccylinder",
+      "child",
+      "chinese_lion",
+      "cone",
+      "cup",
+      "david",
+      "egea",
+      "ellipsoid",
+      "eros",
+      "fish",
+      "girl",
+      "hand",
+      "joint",
+      "julius",
+      "nicolo",
+      "pierrot",
+      "Pyramid",
+      "pyramid-1",
+      "screwdriver",
+      "sharp_sphere",
+      "special_cube",
+      "star",
+      "twirl",
+      "dino",
+      "gargoyle"
+    ],
+    "val_shapes_after": [
+      "bunny",
+      "cad",
+      "dino",
+      "gargoyle",
+      "rolling_stage",
+      "turbine_Lp",
+      "cup"
+    ],
+    "test_shapes_after": [
+      "bunny",
+      "cad",
+      "dino",
+      "gargoyle",
+      "rolling_stage",
+      "turbine_Lp",
+      "cup"
+    ]
+  },
+  "elapsed_seconds": 22468.97413086891,
+  "early_stopping": {
+    "monitor": "validation.chamfer_distance",
+    "patience": 10,
+    "min_delta": 0.0,
+    "early_stopped": true,
+    "stopped_epoch": 14,
+    "bad_epochs_at_end": 10,
+    "best_epoch": 4,
+    "best_cd": 0.019478630393444163
+  },
+  "sanity": {
+    "variant": "quality_guided_full",
+    "qnet_training": false,
+    "qnet_all_requires_grad_false": true,
+    "qnet_parameter_grads_none": true,
+    "qnet_state_unchanged": true,
+    "pf_gradient_finite": true,
+    "head_order": [
+      "cleanliness",
+      "structure_fidelity",
+      "surface_fidelity",
+      "sampling_regularity",
+      "overall"
+    ],
+    "guidance_weights": {
+      "cleanliness": 0.16666666666666666,
+      "structure_fidelity": 0.0,
+      "surface_fidelity": 0.16666666666666666,
+      "sampling_regularity": 0.16666666666666666,
+      "overall": 0.5
+    },
+    "zeroed_heads": [
+      "structure_fidelity"
+    ],
+    "beta_aux": 0.1,
+    "quality_fraction": 0.7,
+    "geometry_fraction": 0.30000000000000004,
+    "dynamic_guidance_ratio": true,
+    "difficulty_weight_range": [
+      0.5,
+      2.0
+    ],
+    "first_dynamic_quality_share": 0.7,
+    "first_dynamic_geometry_share": 0.30000000000000004,
+    "direct_geometry_supervision": true,
+    "ema_normalization": true,
+    "quality_batch_size": 4,
+    "quality_rois_this_optimizer_step": 4,
+    "quality_gradient_to_predicted_coordinates_norm": 2.4760241508483887,
+    "candidate_has_grad_fn": true,
+    "first_quality_roi": {
+      "L_matched": 0.03426630049943924,
+      "L_rank": 0.007102319970726967,
+      "L_Q": 0.03604188188910484,
+      "L_geo": 0.013284068554639816,
+      "difficulty": 0.3221433162689209,
+      "difficulty_min_in_batch": 0.3008424937725067,
+      "difficulty_max_in_batch": 0.3458884060382843,
+      "L_denoise_probe": 0.013284068554639816,
+      "quality_grad_norm_at_candidate": 2.4760241508483887,
+      "candidate_has_grad_fn": true,
+      "dynamic_shapes": [
+        "gargoyle",
+        "eros",
+        "star",
+        "chinese_lion"
+      ],
+      "dynamic_sigmas": [
+        "0.005",
+        "0.020",
+        "0.020",
+        "0.010"
+      ],
+      "dynamic_center_indices": [
+        46932,
+        6288,
+        44606,
+        28133
+      ],
+      "candidate_shape": [
+        4,
+        500,
+        3
+      ],
+      "parent_cloud_context": true,
+      "matched": {
+        "q_cand": [
+          0.2945168912410736,
+          0.521101713180542,
+          0.5892773866653442,
+          0.5166783332824707,
+          0.422214537858963
+        ],
+        "q_clean": [
+          0.6240088939666748,
+          0.7243338823318481,
+          0.7600541114807129,
+          0.7582552433013916,
+          0.6822725534439087
+        ],
+        "q_noisy": [
+          0.1683398187160492,
+          0.5452886819839478,
+          0.46482881903648376,
+          0.5149957537651062,
+          0.3693705201148987
+        ],
+        "per_head_matched": [
+          0.055821508169174194,
+          0.027276474982500076,
+          0.0159560889005661,
+          0.029620273038744926,
+          0.03473331034183502
+        ],
+        "per_head_rank_hinge": [
+          0.007900376804172993,
+          0.046388495713472366,
+          0.0,
+          0.02639235556125641,
+          0.0027737291529774666
+        ],
+        "rank_margin": 0.02
+      },
+      "ema_q": 0.03604188188910484,
+      "ema_geo": 0.013284068554639816,
+      "normalized_q": 1.0,
+      "normalized_geo": 1.0,
+      "ema_difficulty": 0.3221433162689209,
+      "difficulty_weight": 1.0,
+      "dynamic_quality_share": 0.7,
+      "dynamic_geometry_share": 0.30000000000000004,
+      "quality_contribution": 0.07000000029802322,
+      "geometry_contribution": 0.029999999329447746,
+      "aux_total": 0.10000000149011612
+    },
+    "quality_gradient_path_present": true,
+    "quality_loss_finite": true,
+    "passed": true
+  }
+}

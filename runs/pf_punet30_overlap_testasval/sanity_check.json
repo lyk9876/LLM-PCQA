@@ -1,0 +1,129 @@
+{
+  "variant": "quality_guided_full",
+  "qnet_training": false,
+  "qnet_all_requires_grad_false": true,
+  "qnet_parameter_grads_none": true,
+  "qnet_state_unchanged": true,
+  "pf_gradient_finite": true,
+  "head_order": [
+    "cleanliness",
+    "structure_fidelity",
+    "surface_fidelity",
+    "sampling_regularity",
+    "overall"
+  ],
+  "guidance_weights": {
+    "cleanliness": 0.16666666666666666,
+    "structure_fidelity": 0.0,
+    "surface_fidelity": 0.16666666666666666,
+    "sampling_regularity": 0.16666666666666666,
+    "overall": 0.5
+  },
+  "zeroed_heads": [
+    "structure_fidelity"
+  ],
+  "beta_aux": 0.1,
+  "quality_fraction": 0.7,
+  "geometry_fraction": 0.30000000000000004,
+  "dynamic_guidance_ratio": true,
+  "difficulty_weight_range": [
+    0.5,
+    2.0
+  ],
+  "first_dynamic_quality_share": 0.7,
+  "first_dynamic_geometry_share": 0.30000000000000004,
+  "direct_geometry_supervision": true,
+  "ema_normalization": true,
+  "quality_batch_size": 4,
+  "quality_rois_this_optimizer_step": 4,
+  "quality_gradient_to_predicted_coordinates_norm": 2.4760241508483887,
+  "candidate_has_grad_fn": true,
+  "first_quality_roi": {
+    "L_matched": 0.03426630049943924,
+    "L_rank": 0.007102319970726967,
+    "L_Q": 0.03604188188910484,
+    "L_geo": 0.013284068554639816,
+    "difficulty": 0.3221433162689209,
+    "difficulty_min_in_batch": 0.3008424937725067,
+    "difficulty_max_in_batch": 0.3458884060382843,
+    "L_denoise_probe": 0.013284068554639816,
+    "quality_grad_norm_at_candidate": 2.4760241508483887,
+    "candidate_has_grad_fn": true,
+    "dynamic_shapes": [
+      "gargoyle",
+      "eros",
+      "star",
+      "chinese_lion"
+    ],
+    "dynamic_sigmas": [
+      "0.005",
+      "0.020",
+      "0.020",
+      "0.010"
+    ],
+    "dynamic_center_indices": [
+      46932,
+      6288,
+      44606,
+      28133
+    ],
+    "candidate_shape": [
+      4,
+      500,
+      3
+    ],
+    "parent_cloud_context": true,
+    "matched": {
+      "q_cand": [
+        0.2945168912410736,
+        0.521101713180542,
+        0.5892773866653442,
+        0.5166783332824707,
+        0.422214537858963
+      ],
+      "q_clean": [
+        0.6240088939666748,
+        0.7243338823318481,
+        0.7600541114807129,
+        0.7582552433013916,
+        0.6822725534439087
+      ],
+      "q_noisy": [
+        0.1683398187160492,
+        0.5452886819839478,
+        0.46482881903648376,
+        0.5149957537651062,
+        0.3693705201148987
+      ],
+      "per_head_matched": [
+        0.055821508169174194,
+        0.027276474982500076,
+        0.0159560889005661,
+        0.029620273038744926,
+        0.03473331034183502
+      ],
+      "per_head_rank_hinge": [
+        0.007900376804172993,
+        0.046388495713472366,
+        0.0,
+        0.02639235556125641,
+        0.0027737291529774666
+      ],
+      "rank_margin": 0.02
+    },
+    "ema_q": 0.03604188188910484,
+    "ema_geo": 0.013284068554639816,
+    "normalized_q": 1.0,
+    "normalized_geo": 1.0,
+    "ema_difficulty": 0.3221433162689209,
+    "difficulty_weight": 1.0,
+    "dynamic_quality_share": 0.7,
+    "dynamic_geometry_share": 0.30000000000000004,
+    "quality_contribution": 0.07000000029802322,
+    "geometry_contribution": 0.029999999329447746,
+    "aux_total": 0.10000000149011612
+  },
+  "quality_gradient_path_present": true,
+  "quality_loss_finite": true,
+  "passed": true
+}

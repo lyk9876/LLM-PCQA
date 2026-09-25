@@ -1,0 +1,1439 @@
+{
+  "schema_version": "pointfilter_punet_quality_geo_ema_fullcover_v2",
+  "variant": "quality_guided_full",
+  "lambda_q": 0.01,
+  "loss": {
+    "baseline": "L_PF",
+    "overall": "L_PF + lambda_q*(1-q_overall)",
+    "overall_detail": "L_PF + lambda_q*((1-q_overall)+0.5*(1-q_detail))",
+    "overall_only_multi_patch_online": "L_PF + lambda_q*(1-mean_i q_overall_i) over N FPS-anchored PF-output patches",
+    "quality_guided_full": "L_PF + beta_aux*(s_Q*L_Q/EMA(L_Q) + s_G*L_geo/EMA(L_geo)); with dynamic s_Q/s_G from clean-vs-noisy QNet headroom when enabled; L_Q=L_matched+0.25*L_rank; EMA values are detached",
+    "L_PF": "original PointFilter 100*(bilateral + repulsion) implementation"
+  },
+  "quality_guided_full": {
+    "beta_matched": 1.0,
+    "gamma_rank": 0.25,
+    "beta_aux": 0.1,
+    "quality_fraction": 0.7,
+    "geometry_fraction": 0.30000000000000004,
+    "loss_ema_decay": 0.99,
+    "loss_ema_eps": 1e-08,
+    "geometry_term": "L_geo = mean_{p in P_hat} min_{q in P_clean} ||p-q||_2 + mean_{q in P_clean} min_{p in P_hat} ||q-p||_2; this term directly backpropagates into PointFilter",
+    "loss_scale_normalization": "detached running EMA",
+    "head_order": [
+      "cleanliness",
+      "structure_fidelity",
+      "surface_fidelity",
+      "sampling_regularity",
+      "overall"
+    ],
+    "head_order_source": "checkpoint config: cleanliness, structure_fidelity, surface_fidelity, sampling_regularity, overall",
+    "qnet_val_plcc_used_for_weighting": false,
+    "guidance_weights": {
+      "cleanliness": 0.16666666666666666,
+      "structure_fidelity": 0.0,
+      "surface_fidelity": 0.16666666666666666,
+      "sampling_regularity": 0.16666666666666666,
+      "overall": 0.5
+    },
+    "guidance_weight_rule": "overall=0.5; cleanliness/surface_fidelity/sampling_regularity=1/6 each; structure_fidelity=0",
+    "zeroed_heads": [
+      "structure_fidelity"
+    ],
+    "zeroed_heads_reason": "pre-training autograd audit: gradient alignment with the Chamfer gradient at/below chance (median cosine -0.004, positive rate 0.458 at sigma=0.025). PLCC measures score accuracy, not gradient usefulness, so the head keeps no weight.",
+    "gradient_alignment_audit": "/data/zhangzy/zzyy/PointFilter_frozen_quality_stage3/qnet_gradient_alignment_audit/alignment.json",
+    "quality_unit": "a dynamically sampled 500-point ROI from a complete noisy Train parent cloud",
+    "spatial_center_sampling": "epoch-dependent coverage-aware FPS: start from an epoch-dependent centre, take the exact 500-NN source ROI, then repeatedly choose the farthest still-uncovered source point until the requested unique-point coverage is reached",
+    "coverage_target_per_parent_cloud": 0.95,
+    "minimum_centers_per_parent_cloud": 100,
+    "maximum_centers_per_parent_cloud": 500,
+    "expected_dynamic_rois_per_epoch": "variable; determined by coverage target at epoch start",
+    "matched_term": "sum_k r_k Huber(q_k(P_hat) - q_k(P_clean)); clean scores detached. The design's separate global and local terms collapse into this one: with a 500-point parent there is a single cloud to match against, so 8x500 nested neighbourhoods would each be the whole patch and the anchor weighting would carry no localisation.",
+    "rank_term": "sum_k w_k ReLU(m - (q_k(P_hat) - q_k(P_noisy))), m=0.02; pure hinge, exactly zero after margin",
+    "sample_difficulty_weighting": true,
+    "dynamic_ratio_rule": "difficulty=weighted ReLU(q_clean-q_noisy); w=clip(difficulty/EMA(difficulty), min, max); q_share=(base_q*w)/(base_q*w+1-base_q)",
+    "geometry_alignment_gate": false,
+    "clean_target_shapes": [
+      "Pyramid",
+      "big_girl",
+      "block",
+      "boy01",
+      "boy02",
+      "bumpy_torus",
+      "ccylinder",
+      "child",
+      "chinese_lion",
+      "cone",
+      "cup",
+      "david",
+      "dino",
+      "egea",
+      "ellipsoid",
+      "eros",
+      "fish",
+      "gargoyle",
+      "girl",
+      "hand",
+      "joint",
+      "julius",
+      "nicolo",
+      "pierrot",
+      "pyramid-1",
+      "screwdriver",
+      "sharp_sphere",
+      "special_cube",
+      "star",
+      "twirl"
+    ],
+    "clean_target_patches": "dynamic; one same-index clean ROI for every scheduled noisy ROI",
+    "validation_never_used_as_quality_target": true
+  },
+  "checkpoint_selection": "earliest strict minimum Validation Chamfer Distance; QNet scores excluded",
+  "early_stopping": {
+    "monitor": "validation.chamfer_distance",
+    "mode": "min",
+    "patience": 10,
+    "min_delta": 0.0,
+    "rule": "stop after patience consecutive epochs whose Validation Chamfer Distance does not beat the historical minimum by min_delta"
+  },
+  "qnet_checkpoint": "/data/zhangzy/zzyy/PUNet/Gaussion/patch_quality_network/test_as_val_qnet_retrain_seed2026/run/best_patch_qnet_test_as_val_v1.pth",
+  "qnet_checkpoint_sha256": "d1845892739b7fb2fe9263cc0130fdfb62e2f2c64483c4a925b22de7bb9e2fbc",
+  "qnet_frozen_parameters": true,
+  "qnet_eval_mode": true,
+  "qnet_forward_no_grad_during_guided_training": false,
+  "qnet_input": "candidate_raw - candidate_raw.mean(dim=points); exactly 500 points",
+  "quality_patch_source": "dynamic Train parent-cloud ROI: noisy points, PF outputs using full-parent neighborhoods, and same-index clean references",
+  "quality_sampling": "dynamic deterministic coverage-aware shape-sigma sampling from complete Train parent clouds; exact 500-NN ROIs, target unique-point coverage enforced per parent",
+  "quality_loader_optimization": {
+    "quality_batch_size": 4,
+    "quality_workers": 8,
+    "quality_prefetch_factor": 2,
+    "batch_semantics": "loss is mean over ROIs; full coverage schedule unchanged"
+  },
+  "qnet_score_activation": "sigmoid(logits), normalized [0,1]",
+  "pf_architecture_modified": false,
+  "pf_initial_checkpoint": "/data/zhangzy/zzyy/Pointfilter-master/Summary/pre_train_model/model_full_ae.pth",
+  "pf_initial_checkpoint_sha256": "86600e6d57fab7887fbda0cf54292578a52d956c36766a130d1e32a475d18cee",
+  "pf_initial_state_sha256": "65893848b04511c8826854e4e0973c8b119b1d2cf0771a678fdb9212e044f7b3",
+  "train_root": "/data/zhangzy/zzyy/PUNet/Gaussion/pointfilter_train_seed2026_train_test_overlap",
+  "train_data_protocol": "PUNet/train 40-shape pool filtered to effective train=30; selected shapes may intentionally overlap effective Test; clean plus five Gaussian levels",
+  "train_data_metadata": {
+    "schema_version": "punet_manifest_pointfilter_train_v1",
+    "shape_split": "/data/zhangzy/zzyy/PUNet/Gaussion/manifests/shape_split_seed2026_train_test_overlap.json",
+    "source_punet_root": "/data/zhangzy/zzyy/PUNet/train/50000_poisson",
+    "clean_root": "/data/zhangzy/zzyy/PUNet/Gaussion/clean_normalized",
+    "noisy_root": "/data/zhangzy/zzyy/PUNet/Gaussion/noisy",
+    "split": "train",
+    "shapes": [
+      "big_girl",
+      "block",
+      "boy01",
+      "boy02",
+      "bumpy_torus",
+      "ccylinder",
+      "child",
+      "chinese_lion",
+      "cone",
+      "cup",
+      "david",
+      "egea",
+      "ellipsoid",
+      "eros",
+      "fish",
+      "girl",
+      "hand",
+      "joint",
+      "julius",
+      "nicolo",
+      "pierrot",
+      "Pyramid",
+      "pyramid-1",
+      "screwdriver",
+      "sharp_sphere",
+      "special_cube",
+      "star",
+      "twirl",
+      "dino",
+      "gargoyle"
+    ],
+    "shape_count": 30,
+    "cloud_count": 180,
+    "normal_estimation": {
+      "method": "local PCA",
+      "k": 30,
+      "orientation": "away from global centroid"
+    },
+    "records": [
+      {
+        "shape": "big_girl",
+        "family": "clean",
+        "source": "/data/zhangzy/zzyy/PUNet/Gaussion/clean_normalized/big_girl.xyz"
+      },
+      {
+        "shape": "big_girl",
+        "family": "noisy",
+        "sigma": "0.005",
+        "source": "/data/zhangzy/zzyy/PUNet/Gaussion/noisy/sigma_0.005/big_girl.xyz"
+      },
+      {
+        "shape": "big_girl",
+        "family": "noisy",
+        "sigma": "0.010",
+        "source": "/data/zhangzy/zzyy/PUNet/Gaussion/noisy/sigma_0.010/big_girl.xyz"
+      },
+      {
+        "shape": "big_girl",
+        "family": "noisy",
+        "sigma": "0.015",
+        "source": "/data/zhangzy/zzyy/PUNet/Gaussion/noisy/sigma_0.015/big_girl.xyz"
+      },
+      {
+        "shape": "big_girl",
+        "family": "noisy",
+        "sigma": "0.020",
+        "source": "/data/zhangzy/zzyy/PUNet/Gaussion/noisy/sigma_0.020/big_girl.xyz"
+      },
+      {
+        "shape": "big_girl",
+        "family": "noisy",
+        "sigma": "0.025",
+        "source": "/data/zhangzy/zzyy/PUNet/Gaussion/noisy/sigma_0.025/big_girl.xyz"
+      },
+      {
+        "shape": "block",
+        "family": "clean",
+        "source": "/data/zhangzy/zzyy/PUNet/Gaussion/clean_normalized/block.xyz"
+      },
+      {
+        "shape": "block",
+        "family": "noisy",
+        "sigma": "0.005",
+        "source": "/data/zhangzy/zzyy/PUNet/Gaussion/noisy/sigma_0.005/block.xyz"
+      },
+      {
+        "shape": "block",
+        "family": "noisy",
+        "sigma": "0.010",
+        "source": "/data/zhangzy/zzyy/PUNet/Gaussion/noisy/sigma_0.010/block.xyz"
+      },
+      {
+        "shape": "block",
+        "family": "noisy",
+        "sigma": "0.015",
+        "source": "/data/zhangzy/zzyy/PUNet/Gaussion/noisy/sigma_0.015/block.xyz"
+      },
+      {
+        "shape": "block",
+        "family": "noisy",
+        "sigma": "0.020",
+        "source": "/data/zhangzy/zzyy/PUNet/Gaussion/noisy/sigma_0.020/block.xyz"
+      },
+      {
+        "shape": "block",
+        "family": "noisy",
+        "sigma": "0.025",
+        "source": "/data/zhangzy/zzyy/PUNet/Gaussion/noisy/sigma_0.025/block.xyz"
+      },
+      {
+        "shape": "boy01",
+        "family": "clean",
+        "source": "/data/zhangzy/zzyy/PUNet/Gaussion/clean_normalized/boy01.xyz"
+      },
+      {
+        "shape": "boy01",
+        "family": "noisy",
+        "sigma": "0.005",
+        "source": "/data/zhangzy/zzyy/PUNet/Gaussion/noisy/sigma_0.005/boy01.xyz"
+      },
+      {
+        "shape": "boy01",
+        "family": "noisy",
+        "sigma": "0.010",
+        "source": "/data/zhangzy/zzyy/PUNet/Gaussion/noisy/sigma_0.010/boy01.xyz"
+      },
+      {
+        "shape": "boy01",
+        "family": "noisy",
+        "sigma": "0.015",
+        "source": "/data/zhangzy/zzyy/PUNet/Gaussion/noisy/sigma_0.015/boy01.xyz"
+      },
+      {
+        "shape": "boy01",
+        "family": "noisy",
+        "sigma": "0.020",
+        "source": "/data/zhangzy/zzyy/PUNet/Gaussion/noisy/sigma_0.020/boy01.xyz"
+      },
+      {
+        "shape": "boy01",
+        "family": "noisy",
+        "sigma": "0.025",
+        "source": "/data/zhangzy/zzyy/PUNet/Gaussion/noisy/sigma_0.025/boy01.xyz"
+      },
+      {
+        "shape": "boy02",
+        "family": "clean",
+        "source": "/data/zhangzy/zzyy/PUNet/Gaussion/clean_normalized/boy02.xyz"
+      },
+      {
+        "shape": "boy02",
+        "family": "noisy",
+        "sigma": "0.005",
+        "source": "/data/zhangzy/zzyy/PUNet/Gaussion/noisy/sigma_0.005/boy02.xyz"
+      },
+      {
+        "shape": "boy02",
+        "family": "noisy",
+        "sigma": "0.010",
+        "source": "/data/zhangzy/zzyy/PUNet/Gaussion/noisy/sigma_0.010/boy02.xyz"
+      },
+      {
+        "shape": "boy02",
+        "family": "noisy",
+        "sigma": "0.015",
+        "source": "/data/zhangzy/zzyy/PUNet/Gaussion/noisy/sigma_0.015/boy02.xyz"
+      },
+      {
+        "shape": "boy02",
+        "family": "noisy",
+        "sigma": "0.020",
+        "source": "/data/zhangzy/zzyy/PUNet/Gaussion/noisy/sigma_0.020/boy02.xyz"
+      },
+      {
+        "shape": "boy02",
+        "family": "noisy",
+        "sigma": "0.025",
+        "source": "/data/zhangzy/zzyy/PUNet/Gaussion/noisy/sigma_0.025/boy02.xyz"
+      },
+      {
+        "shape": "bumpy_torus",
+        "family": "clean",
+        "source": "/data/zhangzy/zzyy/PUNet/Gaussion/clean_normalized/bumpy_torus.xyz"
+      },
+      {
+        "shape": "bumpy_torus",
+        "family": "noisy",
+        "sigma": "0.005",
+        "source": "/data/zhangzy/zzyy/PUNet/Gaussion/noisy/sigma_0.005/bumpy_torus.xyz"
+      },
+      {
+        "shape": "bumpy_torus",
+        "family": "noisy",
+        "sigma": "0.010",
+        "source": "/data/zhangzy/zzyy/PUNet/Gaussion/noisy/sigma_0.010/bumpy_torus.xyz"
+      },
+      {
+        "shape": "bumpy_torus",
+        "family": "noisy",
+        "sigma": "0.015",
+        "source": "/data/zhangzy/zzyy/PUNet/Gaussion/noisy/sigma_0.015/bumpy_torus.xyz"
+      },
+      {
+        "shape": "bumpy_torus",
+        "family": "noisy",
+        "sigma": "0.020",
+        "source": "/data/zhangzy/zzyy/PUNet/Gaussion/noisy/sigma_0.020/bumpy_torus.xyz"
+      },
+      {
+        "shape": "bumpy_torus",
+        "family": "noisy",
+        "sigma": "0.025",
+        "source": "/data/zhangzy/zzyy/PUNet/Gaussion/noisy/sigma_0.025/bumpy_torus.xyz"
+      },
+      {
+        "shape": "ccylinder",
+        "family": "clean",
+        "source": "/data/zhangzy/zzyy/PUNet/Gaussion/clean_normalized/ccylinder.xyz"
+      },
+      {
+        "shape": "ccylinder",
+        "family": "noisy",
+        "sigma": "0.005",
+        "source": "/data/zhangzy/zzyy/PUNet/Gaussion/noisy/sigma_0.005/ccylinder.xyz"
+      },
+      {
+        "shape": "ccylinder",
+        "family": "noisy",
+        "sigma": "0.010",
+        "source": "/data/zhangzy/zzyy/PUNet/Gaussion/noisy/sigma_0.010/ccylinder.xyz"
+      },
+      {
+        "shape": "ccylinder",
+        "family": "noisy",
+        "sigma": "0.015",
+        "source": "/data/zhangzy/zzyy/PUNet/Gaussion/noisy/sigma_0.015/ccylinder.xyz"
+      },
+      {
+        "shape": "ccylinder",
+        "family": "noisy",
+        "sigma": "0.020",
+        "source": "/data/zhangzy/zzyy/PUNet/Gaussion/noisy/sigma_0.020/ccylinder.xyz"
+      },
+      {
+        "shape": "ccylinder",
+        "family": "noisy",
+        "sigma": "0.025",
+        "source": "/data/zhangzy/zzyy/PUNet/Gaussion/noisy/sigma_0.025/ccylinder.xyz"
+      },
+      {
+        "shape": "child",
+        "family": "clean",
+        "source": "/data/zhangzy/zzyy/PUNet/Gaussion/clean_normalized/child.xyz"
+      },
+      {
+        "shape": "child",
+        "family": "noisy",
+        "sigma": "0.005",
+        "source": "/data/zhangzy/zzyy/PUNet/Gaussion/noisy/sigma_0.005/child.xyz"
+      },
+      {
+        "shape": "child",
+        "family": "noisy",
+        "sigma": "0.010",
+        "source": "/data/zhangzy/zzyy/PUNet/Gaussion/noisy/sigma_0.010/child.xyz"
+      },
+      {
+        "shape": "child",
+        "family": "noisy",
+        "sigma": "0.015",
+        "source": "/data/zhangzy/zzyy/PUNet/Gaussion/noisy/sigma_0.015/child.xyz"
+      },
+      {
+        "shape": "child",
+        "family": "noisy",
+        "sigma": "0.020",
+        "source": "/data/zhangzy/zzyy/PUNet/Gaussion/noisy/sigma_0.020/child.xyz"
+      },
+      {
+        "shape": "child",
+        "family": "noisy",
+        "sigma": "0.025",
+        "source": "/data/zhangzy/zzyy/PUNet/Gaussion/noisy/sigma_0.025/child.xyz"
+      },
+      {
+        "shape": "chinese_lion",
+        "family": "clean",
+        "source": "/data/zhangzy/zzyy/PUNet/Gaussion/clean_normalized/chinese_lion.xyz"
+      },
+      {
+        "shape": "chinese_lion",
+        "family": "noisy",
+        "sigma": "0.005",
+        "source": "/data/zhangzy/zzyy/PUNet/Gaussion/noisy/sigma_0.005/chinese_lion.xyz"
+      },
+      {
+        "shape": "chinese_lion",
+        "family": "noisy",
+        "sigma": "0.010",
+        "source": "/data/zhangzy/zzyy/PUNet/Gaussion/noisy/sigma_0.010/chinese_lion.xyz"
+      },
+      {
+        "shape": "chinese_lion",
+        "family": "noisy",
+        "sigma": "0.015",
+        "source": "/data/zhangzy/zzyy/PUNet/Gaussion/noisy/sigma_0.015/chinese_lion.xyz"
+      },
+      {
+        "shape": "chinese_lion",
+        "family": "noisy",
+        "sigma": "0.020",
+        "source": "/data/zhangzy/zzyy/PUNet/Gaussion/noisy/sigma_0.020/chinese_lion.xyz"
+      },
+      {
+        "shape": "chinese_lion",
+        "family": "noisy",
+        "sigma": "0.025",
+        "source": "/data/zhangzy/zzyy/PUNet/Gaussion/noisy/sigma_0.025/chinese_lion.xyz"
+      },
+      {
+        "shape": "cone",
+        "family": "clean",
+        "source": "/data/zhangzy/zzyy/PUNet/Gaussion/clean_normalized/cone.xyz"
+      },
+      {
+        "shape": "cone",
+        "family": "noisy",
+        "sigma": "0.005",
+        "source": "/data/zhangzy/zzyy/PUNet/Gaussion/noisy/sigma_0.005/cone.xyz"
+      },
+      {
+        "shape": "cone",
+        "family": "noisy",
+        "sigma": "0.010",
+        "source": "/data/zhangzy/zzyy/PUNet/Gaussion/noisy/sigma_0.010/cone.xyz"
+      },
+      {
+        "shape": "cone",
+        "family": "noisy",
+        "sigma": "0.015",
+        "source": "/data/zhangzy/zzyy/PUNet/Gaussion/noisy/sigma_0.015/cone.xyz"
+      },
+      {
+        "shape": "cone",
+        "family": "noisy",
+        "sigma": "0.020",
+        "source": "/data/zhangzy/zzyy/PUNet/Gaussion/noisy/sigma_0.020/cone.xyz"
+      },
+      {
+        "shape": "cone",
+        "family": "noisy",
+        "sigma": "0.025",
+        "source": "/data/zhangzy/zzyy/PUNet/Gaussion/noisy/sigma_0.025/cone.xyz"
+      },
+      {
+        "shape": "cup",
+        "family": "clean",
+        "source": "/data/zhangzy/zzyy/PUNet/Gaussion/clean_normalized/cup.xyz"
+      },
+      {
+        "shape": "cup",
+        "family": "noisy",
+        "sigma": "0.005",
+        "source": "/data/zhangzy/zzyy/PUNet/Gaussion/noisy/sigma_0.005/cup.xyz"
+      },
+      {
+        "shape": "cup",
+        "family": "noisy",
+        "sigma": "0.010",
+        "source": "/data/zhangzy/zzyy/PUNet/Gaussion/noisy/sigma_0.010/cup.xyz"
+      },
+      {
+        "shape": "cup",
+        "family": "noisy",
+        "sigma": "0.015",
+        "source": "/data/zhangzy/zzyy/PUNet/Gaussion/noisy/sigma_0.015/cup.xyz"
+      },
+      {
+        "shape": "cup",
+        "family": "noisy",
+        "sigma": "0.020",
+        "source": "/data/zhangzy/zzyy/PUNet/Gaussion/noisy/sigma_0.020/cup.xyz"
+      },
+      {
+        "shape": "cup",
+        "family": "noisy",
+        "sigma": "0.025",
+        "source": "/data/zhangzy/zzyy/PUNet/Gaussion/noisy/sigma_0.025/cup.xyz"
+      },
+      {
+        "shape": "david",
+        "family": "clean",
+        "source": "/data/zhangzy/zzyy/PUNet/Gaussion/clean_normalized/david.xyz"
+      },
+      {
+        "shape": "david",
+        "family": "noisy",
+        "sigma": "0.005",
+        "source": "/data/zhangzy/zzyy/PUNet/Gaussion/noisy/sigma_0.005/david.xyz"
+      },
+      {
+        "shape": "david",
+        "family": "noisy",
+        "sigma": "0.010",
+        "source": "/data/zhangzy/zzyy/PUNet/Gaussion/noisy/sigma_0.010/david.xyz"
+      },
+      {
+        "shape": "david",
+        "family": "noisy",
+        "sigma": "0.015",
+        "source": "/data/zhangzy/zzyy/PUNet/Gaussion/noisy/sigma_0.015/david.xyz"
+      },
+      {
+        "shape": "david",
+        "family": "noisy",
+        "sigma": "0.020",
+        "source": "/data/zhangzy/zzyy/PUNet/Gaussion/noisy/sigma_0.020/david.xyz"
+      },
+      {
+        "shape": "david",
+        "family": "noisy",
+        "sigma": "0.025",
+        "source": "/data/zhangzy/zzyy/PUNet/Gaussion/noisy/sigma_0.025/david.xyz"
+      },
+      {
+        "shape": "egea",
+        "family": "clean",
+        "source": "/data/zhangzy/zzyy/PUNet/Gaussion/clean_normalized/egea.xyz"
+      },
+      {
+        "shape": "egea",
+        "family": "noisy",
+        "sigma": "0.005",
+        "source": "/data/zhangzy/zzyy/PUNet/Gaussion/noisy/sigma_0.005/egea.xyz"
+      },
+      {
+        "shape": "egea",
+        "family": "noisy",
+        "sigma": "0.010",
+        "source": "/data/zhangzy/zzyy/PUNet/Gaussion/noisy/sigma_0.010/egea.xyz"
+      },
+      {
+        "shape": "egea",
+        "family": "noisy",
+        "sigma": "0.015",
+        "source": "/data/zhangzy/zzyy/PUNet/Gaussion/noisy/sigma_0.015/egea.xyz"
+      },
+      {
+        "shape": "egea",
+        "family": "noisy",
+        "sigma": "0.020",
+        "source": "/data/zhangzy/zzyy/PUNet/Gaussion/noisy/sigma_0.020/egea.xyz"
+      },
+      {
+        "shape": "egea",
+        "family": "noisy",
+        "sigma": "0.025",
+        "source": "/data/zhangzy/zzyy/PUNet/Gaussion/noisy/sigma_0.025/egea.xyz"
+      },
+      {
+        "shape": "ellipsoid",
+        "family": "clean",
+        "source": "/data/zhangzy/zzyy/PUNet/Gaussion/clean_normalized/ellipsoid.xyz"
+      },
+      {
+        "shape": "ellipsoid",
+        "family": "noisy",
+        "sigma": "0.005",
+        "source": "/data/zhangzy/zzyy/PUNet/Gaussion/noisy/sigma_0.005/ellipsoid.xyz"
+      },
+      {
+        "shape": "ellipsoid",
+        "family": "noisy",
+        "sigma": "0.010",
+        "source": "/data/zhangzy/zzyy/PUNet/Gaussion/noisy/sigma_0.010/ellipsoid.xyz"
+      },
+      {
+        "shape": "ellipsoid",
+        "family": "noisy",
+        "sigma": "0.015",
+        "source": "/data/zhangzy/zzyy/PUNet/Gaussion/noisy/sigma_0.015/ellipsoid.xyz"
+      },
+      {
+        "shape": "ellipsoid",
+        "family": "noisy",
+        "sigma": "0.020",
+        "source": "/data/zhangzy/zzyy/PUNet/Gaussion/noisy/sigma_0.020/ellipsoid.xyz"
+      },
+      {
+        "shape": "ellipsoid",
+        "family": "noisy",
+        "sigma": "0.025",
+        "source": "/data/zhangzy/zzyy/PUNet/Gaussion/noisy/sigma_0.025/ellipsoid.xyz"
+      },
+      {
+        "shape": "eros",
+        "family": "clean",
+        "source": "/data/zhangzy/zzyy/PUNet/Gaussion/clean_normalized/eros.xyz"
+      },
+      {
+        "shape": "eros",
+        "family": "noisy",
+        "sigma": "0.005",
+        "source": "/data/zhangzy/zzyy/PUNet/Gaussion/noisy/sigma_0.005/eros.xyz"
+      },
+      {
+        "shape": "eros",
+        "family": "noisy",
+        "sigma": "0.010",
+        "source": "/data/zhangzy/zzyy/PUNet/Gaussion/noisy/sigma_0.010/eros.xyz"
+      },
+      {
+        "shape": "eros",
+        "family": "noisy",
+        "sigma": "0.015",
+        "source": "/data/zhangzy/zzyy/PUNet/Gaussion/noisy/sigma_0.015/eros.xyz"
+      },
+      {
+        "shape": "eros",
+        "family": "noisy",
+        "sigma": "0.020",
+        "source": "/data/zhangzy/zzyy/PUNet/Gaussion/noisy/sigma_0.020/eros.xyz"
+      },
+      {
+        "shape": "eros",
+        "family": "noisy",
+        "sigma": "0.025",
+        "source": "/data/zhangzy/zzyy/PUNet/Gaussion/noisy/sigma_0.025/eros.xyz"
+      },
+      {
+        "shape": "fish",
+        "family": "clean",
+        "source": "/data/zhangzy/zzyy/PUNet/Gaussion/clean_normalized/fish.xyz"
+      },
+      {
+        "shape": "fish",
+        "family": "noisy",
+        "sigma": "0.005",
+        "source": "/data/zhangzy/zzyy/PUNet/Gaussion/noisy/sigma_0.005/fish.xyz"
+      },
+      {
+        "shape": "fish",
+        "family": "noisy",
+        "sigma": "0.010",
+        "source": "/data/zhangzy/zzyy/PUNet/Gaussion/noisy/sigma_0.010/fish.xyz"
+      },
+      {
+        "shape": "fish",
+        "family": "noisy",
+        "sigma": "0.015",
+        "source": "/data/zhangzy/zzyy/PUNet/Gaussion/noisy/sigma_0.015/fish.xyz"
+      },
+      {
+        "shape": "fish",
+        "family": "noisy",
+        "sigma": "0.020",
+        "source": "/data/zhangzy/zzyy/PUNet/Gaussion/noisy/sigma_0.020/fish.xyz"
+      },
+      {
+        "shape": "fish",
+        "family": "noisy",
+        "sigma": "0.025",
+        "source": "/data/zhangzy/zzyy/PUNet/Gaussion/noisy/sigma_0.025/fish.xyz"
+      },
+      {
+        "shape": "girl",
+        "family": "clean",
+        "source": "/data/zhangzy/zzyy/PUNet/Gaussion/clean_normalized/girl.xyz"
+      },
+      {
+        "shape": "girl",
+        "family": "noisy",
+        "sigma": "0.005",
+        "source": "/data/zhangzy/zzyy/PUNet/Gaussion/noisy/sigma_0.005/girl.xyz"
+      },
+      {
+        "shape": "girl",
+        "family": "noisy",
+        "sigma": "0.010",
+        "source": "/data/zhangzy/zzyy/PUNet/Gaussion/noisy/sigma_0.010/girl.xyz"
+      },
+      {
+        "shape": "girl",
+        "family": "noisy",
+        "sigma": "0.015",
+        "source": "/data/zhangzy/zzyy/PUNet/Gaussion/noisy/sigma_0.015/girl.xyz"
+      },
+      {
+        "shape": "girl",
+        "family": "noisy",
+        "sigma": "0.020",
+        "source": "/data/zhangzy/zzyy/PUNet/Gaussion/noisy/sigma_0.020/girl.xyz"
+      },
+      {
+        "shape": "girl",
+        "family": "noisy",
+        "sigma": "0.025",
+        "source": "/data/zhangzy/zzyy/PUNet/Gaussion/noisy/sigma_0.025/girl.xyz"
+      },
+      {
+        "shape": "hand",
+        "family": "clean",
+        "source": "/data/zhangzy/zzyy/PUNet/Gaussion/clean_normalized/hand.xyz"
+      },
+      {
+        "shape": "hand",
+        "family": "noisy",
+        "sigma": "0.005",
+        "source": "/data/zhangzy/zzyy/PUNet/Gaussion/noisy/sigma_0.005/hand.xyz"
+      },
+      {
+        "shape": "hand",
+        "family": "noisy",
+        "sigma": "0.010",
+        "source": "/data/zhangzy/zzyy/PUNet/Gaussion/noisy/sigma_0.010/hand.xyz"
+      },
+      {
+        "shape": "hand",
+        "family": "noisy",
+        "sigma": "0.015",
+        "source": "/data/zhangzy/zzyy/PUNet/Gaussion/noisy/sigma_0.015/hand.xyz"
+      },
+      {
+        "shape": "hand",
+        "family": "noisy",
+        "sigma": "0.020",
+        "source": "/data/zhangzy/zzyy/PUNet/Gaussion/noisy/sigma_0.020/hand.xyz"
+      },
+      {
+        "shape": "hand",
+        "family": "noisy",
+        "sigma": "0.025",
+        "source": "/data/zhangzy/zzyy/PUNet/Gaussion/noisy/sigma_0.025/hand.xyz"
+      },
+      {
+        "shape": "joint",
+        "family": "clean",
+        "source": "/data/zhangzy/zzyy/PUNet/Gaussion/clean_normalized/joint.xyz"
+      },
+      {
+        "shape": "joint",
+        "family": "noisy",
+        "sigma": "0.005",
+        "source": "/data/zhangzy/zzyy/PUNet/Gaussion/noisy/sigma_0.005/joint.xyz"
+      },
+      {
+        "shape": "joint",
+        "family": "noisy",
+        "sigma": "0.010",
+        "source": "/data/zhangzy/zzyy/PUNet/Gaussion/noisy/sigma_0.010/joint.xyz"
+      },
+      {
+        "shape": "joint",
+        "family": "noisy",
+        "sigma": "0.015",
+        "source": "/data/zhangzy/zzyy/PUNet/Gaussion/noisy/sigma_0.015/joint.xyz"
+      },
+      {
+        "shape": "joint",
+        "family": "noisy",
+        "sigma": "0.020",
+        "source": "/data/zhangzy/zzyy/PUNet/Gaussion/noisy/sigma_0.020/joint.xyz"
+      },
+      {
+        "shape": "joint",
+        "family": "noisy",
+        "sigma": "0.025",
+        "source": "/data/zhangzy/zzyy/PUNet/Gaussion/noisy/sigma_0.025/joint.xyz"
+      },
+      {
+        "shape": "julius",
+        "family": "clean",
+        "source": "/data/zhangzy/zzyy/PUNet/Gaussion/clean_normalized/julius.xyz"
+      },
+      {
+        "shape": "julius",
+        "family": "noisy",
+        "sigma": "0.005",
+        "source": "/data/zhangzy/zzyy/PUNet/Gaussion/noisy/sigma_0.005/julius.xyz"
+      },
+      {
+        "shape": "julius",
+        "family": "noisy",
+        "sigma": "0.010",
+        "source": "/data/zhangzy/zzyy/PUNet/Gaussion/noisy/sigma_0.010/julius.xyz"
+      },
+      {
+        "shape": "julius",
+        "family": "noisy",
+        "sigma": "0.015",
+        "source": "/data/zhangzy/zzyy/PUNet/Gaussion/noisy/sigma_0.015/julius.xyz"
+      },
+      {
+        "shape": "julius",
+        "family": "noisy",
+        "sigma": "0.020",
+        "source": "/data/zhangzy/zzyy/PUNet/Gaussion/noisy/sigma_0.020/julius.xyz"
+      },
+      {
+        "shape": "julius",
+        "family": "noisy",
+        "sigma": "0.025",
+        "source": "/data/zhangzy/zzyy/PUNet/Gaussion/noisy/sigma_0.025/julius.xyz"
+      },
+      {
+        "shape": "nicolo",
+        "family": "clean",
+        "source": "/data/zhangzy/zzyy/PUNet/Gaussion/clean_normalized/nicolo.xyz"
+      },
+      {
+        "shape": "nicolo",
+        "family": "noisy",
+        "sigma": "0.005",
+        "source": "/data/zhangzy/zzyy/PUNet/Gaussion/noisy/sigma_0.005/nicolo.xyz"
+      },
+      {
+        "shape": "nicolo",
+        "family": "noisy",
+        "sigma": "0.010",
+        "source": "/data/zhangzy/zzyy/PUNet/Gaussion/noisy/sigma_0.010/nicolo.xyz"
+      },
+      {
+        "shape": "nicolo",
+        "family": "noisy",
+        "sigma": "0.015",
+        "source": "/data/zhangzy/zzyy/PUNet/Gaussion/noisy/sigma_0.015/nicolo.xyz"
+      },
+      {
+        "shape": "nicolo",
+        "family": "noisy",
+        "sigma": "0.020",
+        "source": "/data/zhangzy/zzyy/PUNet/Gaussion/noisy/sigma_0.020/nicolo.xyz"
+      },
+      {
+        "shape": "nicolo",
+        "family": "noisy",
+        "sigma": "0.025",
+        "source": "/data/zhangzy/zzyy/PUNet/Gaussion/noisy/sigma_0.025/nicolo.xyz"
+      },
+      {
+        "shape": "pierrot",
+        "family": "clean",
+        "source": "/data/zhangzy/zzyy/PUNet/Gaussion/clean_normalized/pierrot.xyz"
+      },
+      {
+        "shape": "pierrot",
+        "family": "noisy",
+        "sigma": "0.005",
+        "source": "/data/zhangzy/zzyy/PUNet/Gaussion/noisy/sigma_0.005/pierrot.xyz"
+      },
+      {
+        "shape": "pierrot",
+        "family": "noisy",
+        "sigma": "0.010",
+        "source": "/data/zhangzy/zzyy/PUNet/Gaussion/noisy/sigma_0.010/pierrot.xyz"
+      },
+      {
+        "shape": "pierrot",
+        "family": "noisy",
+        "sigma": "0.015",
+        "source": "/data/zhangzy/zzyy/PUNet/Gaussion/noisy/sigma_0.015/pierrot.xyz"
+      },
+      {
+        "shape": "pierrot",
+        "family": "noisy",
+        "sigma": "0.020",
+        "source": "/data/zhangzy/zzyy/PUNet/Gaussion/noisy/sigma_0.020/pierrot.xyz"
+      },
+      {
+        "shape": "pierrot",
+        "family": "noisy",
+        "sigma": "0.025",
+        "source": "/data/zhangzy/zzyy/PUNet/Gaussion/noisy/sigma_0.025/pierrot.xyz"
+      },
+      {
+        "shape": "Pyramid",
+        "family": "clean",
+        "source": "/data/zhangzy/zzyy/PUNet/Gaussion/clean_normalized/Pyramid.xyz"
+      },
+      {
+        "shape": "Pyramid",
+        "family": "noisy",
+        "sigma": "0.005",
+        "source": "/data/zhangzy/zzyy/PUNet/Gaussion/noisy/sigma_0.005/Pyramid.xyz"
+      },
+      {
+        "shape": "Pyramid",
+        "family": "noisy",
+        "sigma": "0.010",
+        "source": "/data/zhangzy/zzyy/PUNet/Gaussion/noisy/sigma_0.010/Pyramid.xyz"
+      },
+      {
+        "shape": "Pyramid",
+        "family": "noisy",
+        "sigma": "0.015",
+        "source": "/data/zhangzy/zzyy/PUNet/Gaussion/noisy/sigma_0.015/Pyramid.xyz"
+      },
+      {
+        "shape": "Pyramid",
+        "family": "noisy",
+        "sigma": "0.020",
+        "source": "/data/zhangzy/zzyy/PUNet/Gaussion/noisy/sigma_0.020/Pyramid.xyz"
+      },
+      {
+        "shape": "Pyramid",
+        "family": "noisy",
+        "sigma": "0.025",
+        "source": "/data/zhangzy/zzyy/PUNet/Gaussion/noisy/sigma_0.025/Pyramid.xyz"
+      },
+      {
+        "shape": "pyramid-1",
+        "family": "clean",
+        "source": "/data/zhangzy/zzyy/PUNet/Gaussion/clean_normalized/pyramid-1.xyz"
+      },
+      {
+        "shape": "pyramid-1",
+        "family": "noisy",
+        "sigma": "0.005",
+        "source": "/data/zhangzy/zzyy/PUNet/Gaussion/noisy/sigma_0.005/pyramid-1.xyz"
+      },
+      {
+        "shape": "pyramid-1",
+        "family": "noisy",
+        "sigma": "0.010",
+        "source": "/data/zhangzy/zzyy/PUNet/Gaussion/noisy/sigma_0.010/pyramid-1.xyz"
+      },
+      {
+        "shape": "pyramid-1",
+        "family": "noisy",
+        "sigma": "0.015",
+        "source": "/data/zhangzy/zzyy/PUNet/Gaussion/noisy/sigma_0.015/pyramid-1.xyz"
+      },
+      {
+        "shape": "pyramid-1",
+        "family": "noisy",
+        "sigma": "0.020",
+        "source": "/data/zhangzy/zzyy/PUNet/Gaussion/noisy/sigma_0.020/pyramid-1.xyz"
+      },
+      {
+        "shape": "pyramid-1",
+        "family": "noisy",
+        "sigma": "0.025",
+        "source": "/data/zhangzy/zzyy/PUNet/Gaussion/noisy/sigma_0.025/pyramid-1.xyz"
+      },
+      {
+        "shape": "screwdriver",
+        "family": "clean",
+        "source": "/data/zhangzy/zzyy/PUNet/Gaussion/clean_normalized/screwdriver.xyz"
+      },
+      {
+        "shape": "screwdriver",
+        "family": "noisy",
+        "sigma": "0.005",
+        "source": "/data/zhangzy/zzyy/PUNet/Gaussion/noisy/sigma_0.005/screwdriver.xyz"
+      },
+      {
+        "shape": "screwdriver",
+        "family": "noisy",
+        "sigma": "0.010",
+        "source": "/data/zhangzy/zzyy/PUNet/Gaussion/noisy/sigma_0.010/screwdriver.xyz"
+      },
+      {
+        "shape": "screwdriver",
+        "family": "noisy",
+        "sigma": "0.015",
+        "source": "/data/zhangzy/zzyy/PUNet/Gaussion/noisy/sigma_0.015/screwdriver.xyz"
+      },
+      {
+        "shape": "screwdriver",
+        "family": "noisy",
+        "sigma": "0.020",
+        "source": "/data/zhangzy/zzyy/PUNet/Gaussion/noisy/sigma_0.020/screwdriver.xyz"
+      },
+      {
+        "shape": "screwdriver",
+        "family": "noisy",
+        "sigma": "0.025",
+        "source": "/data/zhangzy/zzyy/PUNet/Gaussion/noisy/sigma_0.025/screwdriver.xyz"
+      },
+      {
+        "shape": "sharp_sphere",
+        "family": "clean",
+        "source": "/data/zhangzy/zzyy/PUNet/Gaussion/clean_normalized/sharp_sphere.xyz"
+      },
+      {
+        "shape": "sharp_sphere",
+        "family": "noisy",
+        "sigma": "0.005",
+        "source": "/data/zhangzy/zzyy/PUNet/Gaussion/noisy/sigma_0.005/sharp_sphere.xyz"
+      },
+      {
+        "shape": "sharp_sphere",
+        "family": "noisy",
+        "sigma": "0.010",
+        "source": "/data/zhangzy/zzyy/PUNet/Gaussion/noisy/sigma_0.010/sharp_sphere.xyz"
+      },
+      {
+        "shape": "sharp_sphere",
+        "family": "noisy",
+        "sigma": "0.015",
+        "source": "/data/zhangzy/zzyy/PUNet/Gaussion/noisy/sigma_0.015/sharp_sphere.xyz"
+      },
+      {
+        "shape": "sharp_sphere",
+        "family": "noisy",
+        "sigma": "0.020",
+        "source": "/data/zhangzy/zzyy/PUNet/Gaussion/noisy/sigma_0.020/sharp_sphere.xyz"
+      },
+      {
+        "shape": "sharp_sphere",
+        "family": "noisy",
+        "sigma": "0.025",
+        "source": "/data/zhangzy/zzyy/PUNet/Gaussion/noisy/sigma_0.025/sharp_sphere.xyz"
+      },
+      {
+        "shape": "special_cube",
+        "family": "clean",
+        "source": "/data/zhangzy/zzyy/PUNet/Gaussion/clean_normalized/special_cube.xyz"
+      },
+      {
+        "shape": "special_cube",
+        "family": "noisy",
+        "sigma": "0.005",
+        "source": "/data/zhangzy/zzyy/PUNet/Gaussion/noisy/sigma_0.005/special_cube.xyz"
+      },
+      {
+        "shape": "special_cube",
+        "family": "noisy",
+        "sigma": "0.010",
+        "source": "/data/zhangzy/zzyy/PUNet/Gaussion/noisy/sigma_0.010/special_cube.xyz"
+      },
+      {
+        "shape": "special_cube",
+        "family": "noisy",
+        "sigma": "0.015",
+        "source": "/data/zhangzy/zzyy/PUNet/Gaussion/noisy/sigma_0.015/special_cube.xyz"
+      },
+      {
+        "shape": "special_cube",
+        "family": "noisy",
+        "sigma": "0.020",
+        "source": "/data/zhangzy/zzyy/PUNet/Gaussion/noisy/sigma_0.020/special_cube.xyz"
+      },
+      {
+        "shape": "special_cube",
+        "family": "noisy",
+        "sigma": "0.025",
+        "source": "/data/zhangzy/zzyy/PUNet/Gaussion/noisy/sigma_0.025/special_cube.xyz"
+      },
+      {
+        "shape": "star",
+        "family": "clean",
+        "source": "/data/zhangzy/zzyy/PUNet/Gaussion/clean_normalized/star.xyz"
+      },
+      {
+        "shape": "star",
+        "family": "noisy",
+        "sigma": "0.005",
+        "source": "/data/zhangzy/zzyy/PUNet/Gaussion/noisy/sigma_0.005/star.xyz"
+      },
+      {
+        "shape": "star",
+        "family": "noisy",
+        "sigma": "0.010",
+        "source": "/data/zhangzy/zzyy/PUNet/Gaussion/noisy/sigma_0.010/star.xyz"
+      },
+      {
+        "shape": "star",
+        "family": "noisy",
+        "sigma": "0.015",
+        "source": "/data/zhangzy/zzyy/PUNet/Gaussion/noisy/sigma_0.015/star.xyz"
+      },
+      {
+        "shape": "star",
+        "family": "noisy",
+        "sigma": "0.020",
+        "source": "/data/zhangzy/zzyy/PUNet/Gaussion/noisy/sigma_0.020/star.xyz"
+      },
+      {
+        "shape": "star",
+        "family": "noisy",
+        "sigma": "0.025",
+        "source": "/data/zhangzy/zzyy/PUNet/Gaussion/noisy/sigma_0.025/star.xyz"
+      },
+      {
+        "shape": "twirl",
+        "family": "clean",
+        "source": "/data/zhangzy/zzyy/PUNet/Gaussion/clean_normalized/twirl.xyz"
+      },
+      {
+        "shape": "twirl",
+        "family": "noisy",
+        "sigma": "0.005",
+        "source": "/data/zhangzy/zzyy/PUNet/Gaussion/noisy/sigma_0.005/twirl.xyz"
+      },
+      {
+        "shape": "twirl",
+        "family": "noisy",
+        "sigma": "0.010",
+        "source": "/data/zhangzy/zzyy/PUNet/Gaussion/noisy/sigma_0.010/twirl.xyz"
+      },
+      {
+        "shape": "twirl",
+        "family": "noisy",
+        "sigma": "0.015",
+        "source": "/data/zhangzy/zzyy/PUNet/Gaussion/noisy/sigma_0.015/twirl.xyz"
+      },
+      {
+        "shape": "twirl",
+        "family": "noisy",
+        "sigma": "0.020",
+        "source": "/data/zhangzy/zzyy/PUNet/Gaussion/noisy/sigma_0.020/twirl.xyz"
+      },
+      {
+        "shape": "twirl",
+        "family": "noisy",
+        "sigma": "0.025",
+        "source": "/data/zhangzy/zzyy/PUNet/Gaussion/noisy/sigma_0.025/twirl.xyz"
+      },
+      {
+        "shape": "dino",
+        "family": "clean",
+        "source": "/data/zhangzy/zzyy/PUNet/Gaussion/clean_normalized/dino.xyz"
+      },
+      {
+        "shape": "dino",
+        "family": "noisy",
+        "sigma": "0.005",
+        "source": "/data/zhangzy/zzyy/PUNet/Gaussion/noisy/sigma_0.005/dino.xyz"
+      },
+      {
+        "shape": "dino",
+        "family": "noisy",
+        "sigma": "0.010",
+        "source": "/data/zhangzy/zzyy/PUNet/Gaussion/noisy/sigma_0.010/dino.xyz"
+      },
+      {
+        "shape": "dino",
+        "family": "noisy",
+        "sigma": "0.015",
+        "source": "/data/zhangzy/zzyy/PUNet/Gaussion/noisy/sigma_0.015/dino.xyz"
+      },
+      {
+        "shape": "dino",
+        "family": "noisy",
+        "sigma": "0.020",
+        "source": "/data/zhangzy/zzyy/PUNet/Gaussion/noisy/sigma_0.020/dino.xyz"
+      },
+      {
+        "shape": "dino",
+        "family": "noisy",
+        "sigma": "0.025",
+        "source": "/data/zhangzy/zzyy/PUNet/Gaussion/noisy/sigma_0.025/dino.xyz"
+      },
+      {
+        "shape": "gargoyle",
+        "family": "clean",
+        "source": "/data/zhangzy/zzyy/PUNet/Gaussion/clean_normalized/gargoyle.xyz"
+      },
+      {
+        "shape": "gargoyle",
+        "family": "noisy",
+        "sigma": "0.005",
+        "source": "/data/zhangzy/zzyy/PUNet/Gaussion/noisy/sigma_0.005/gargoyle.xyz"
+      },
+      {
+        "shape": "gargoyle",
+        "family": "noisy",
+        "sigma": "0.010",
+        "source": "/data/zhangzy/zzyy/PUNet/Gaussion/noisy/sigma_0.010/gargoyle.xyz"
+      },
+      {
+        "shape": "gargoyle",
+        "family": "noisy",
+        "sigma": "0.015",
+        "source": "/data/zhangzy/zzyy/PUNet/Gaussion/noisy/sigma_0.015/gargoyle.xyz"
+      },
+      {
+        "shape": "gargoyle",
+        "family": "noisy",
+        "sigma": "0.020",
+        "source": "/data/zhangzy/zzyy/PUNet/Gaussion/noisy/sigma_0.020/gargoyle.xyz"
+      },
+      {
+        "shape": "gargoyle",
+        "family": "noisy",
+        "sigma": "0.025",
+        "source": "/data/zhangzy/zzyy/PUNet/Gaussion/noisy/sigma_0.025/gargoyle.xyz"
+      }
+    ]
+  },
+  "shared_manifest": "/data/zhangzy/zzyy/PUNet/Gaussion/manifests/shared_patch_manifest.jsonl",
+  "shape_split": "/data/zhangzy/zzyy/PointFilter_frozen_quality_stage3/punet30_overlap_testasval_qnet_testasval_dynamic_fairsteps_seed2026/effective_shape_split.json",
+  "original_shape_split": "/data/zhangzy/zzyy/PUNet/Gaussion/manifests/shape_split_seed2026_train_test_overlap.json",
+  "split_override": {
+    "original_split": "/data/zhangzy/zzyy/PUNet/Gaussion/manifests/shape_split_seed2026_train_test_overlap.json",
+    "effective_split": "/data/zhangzy/zzyy/PointFilter_frozen_quality_stage3/punet30_overlap_testasval_qnet_testasval_dynamic_fairsteps_seed2026/effective_shape_split.json",
+    "requested_train_test_overlap_shapes": [
+      "dino",
+      "cup",
+      "gargoyle"
+    ],
+    "location_before": {
+      "dino": {
+        "in_train": true,
+        "in_val": false,
+        "in_test": true
+      },
+      "cup": {
+        "in_train": true,
+        "in_val": false,
+        "in_test": true
+      },
+      "gargoyle": {
+        "in_train": true,
+        "in_val": false,
+        "in_test": true
+      }
+    },
+    "train_count_before": 30,
+    "train_count_after": 30,
+    "val_count_before": 6,
+    "val_count_after": 7,
+    "test_count_before": 7,
+    "test_count_after": 7,
+    "train_test_overlap": [
+      "cup",
+      "dino",
+      "gargoyle"
+    ],
+    "train_test_overlap_is_intentional": true,
+    "validation_uses_test": true,
+    "excluded_original_validation_shapes": [
+      "armadillo",
+      "focal-octa",
+      "octa-flower",
+      "pulley",
+      "retinal",
+      "vaselion"
+    ],
+    "evaluation_semantics": "TEST-AS-VALIDATION LEAKAGE ABLATION: Test drives checkpoint selection; overlap shapes are seen in Train",
+    "train_shapes_after": [
+      "big_girl",
+      "block",
+      "boy01",
+      "boy02",
+      "bumpy_torus",
+      "ccylinder",
+      "child",
+      "chinese_lion",
+      "cone",
+      "cup",
+      "david",
+      "egea",
+      "ellipsoid",
+      "eros",
+      "fish",
+      "girl",
+      "hand",
+      "joint",
+      "julius",
+      "nicolo",
+      "pierrot",
+      "Pyramid",
+      "pyramid-1",
+      "screwdriver",
+      "sharp_sphere",
+      "special_cube",
+      "star",
+      "twirl",
+      "dino",
+      "gargoyle"
+    ],
+    "val_shapes_after": [
+      "bunny",
+      "cad",
+      "dino",
+      "gargoyle",
+      "rolling_stage",
+      "turbine_Lp",
+      "cup"
+    ],
+    "test_shapes_after": [
+      "bunny",
+      "cad",
+      "dino",
+      "gargoyle",
+      "rolling_stage",
+      "turbine_Lp",
+      "cup"
+    ]
+  },
+  "constructed_splits": [
+    "train",
+    "val"
+  ],
+  "train_test_overlap_intentional": true,
+  "train_test_overlap_shapes": [
+    "dino",
+    "cup",
+    "gargoyle"
+  ],
+  "test_accessed": true,
+  "test_access_reason": "intentional Test-as-Validation checkpoint-selection ablation",
+  "legacy_loader_invalid_patch_policy": "skip only rare PCA-SVD/nonfinite patch via existing my_collate",
+  "train_parent_shapes": [
+    "Pyramid",
+    "big_girl",
+    "block",
+    "boy01",
+    "boy02",
+    "bumpy_torus",
+    "ccylinder",
+    "child",
+    "chinese_lion",
+    "cone",
+    "cup",
+    "david",
+    "dino",
+    "egea",
+    "ellipsoid",
+    "eros",
+    "fish",
+    "gargoyle",
+    "girl",
+    "hand",
+    "joint",
+    "julius",
+    "nicolo",
+    "pierrot",
+    "pyramid-1",
+    "screwdriver",
+    "sharp_sphere",
+    "special_cube",
+    "star",
+    "twirl"
+  ],
+  "val_parent_shapes": [
+    "bunny",
+    "cad",
+    "cup",
+    "dino",
+    "gargoyle",
+    "rolling_stage",
+    "turbine_Lp"
+  ],
+  "train_quality_candidates_per_epoch": "variable; coverage-aware schedule rebuilt each epoch",
+  "train_quality_candidate_points": 500,
+  "multi_patch_online": "not used",
+  "val_quality_patches": 560,
+  "args": {
+    "variant": "quality_guided_full",
+    "lambda_q": 0.01,
+    "train_root": "/data/zhangzy/zzyy/PUNet/Gaussion/pointfilter_train_seed2026_train_test_overlap",
+    "beta_aux": 0.1,
+    "quality_fraction": 0.7,
+    "dynamic_guidance_ratio": true,
+    "difficulty_weight_min": 0.5,
+    "difficulty_weight_max": 2.0,
+    "difficulty_ema_decay": 0.99,
+    "loss_ema_decay": 0.99,
+    "loss_ema_eps": 1e-08,
+    "shared_manifest": "/data/zhangzy/zzyy/PUNet/Gaussion/manifests/shared_patch_manifest.jsonl",
+    "shape_split": "/data/zhangzy/zzyy/PointFilter_frozen_quality_stage3/punet30_overlap_testasval_qnet_testasval_dynamic_fairsteps_seed2026/effective_shape_split.json",
+    "validation_uses_test": true,
+    "extra_train_shapes": "dino,cup,gargoyle",
+    "pf_checkpoint": "/data/zhangzy/zzyy/Pointfilter-master/Summary/pre_train_model/model_full_ae.pth",
+    "qnet_checkpoint": "/data/zhangzy/zzyy/PUNet/Gaussion/patch_quality_network/test_as_val_qnet_retrain_seed2026/run/best_patch_qnet_test_as_val_v1.pth",
+    "output_dir": "/data/zhangzy/zzyy/PointFilter_frozen_quality_stage3/punet30_overlap_testasval_qnet_testasval_dynamic_fairsteps_seed2026",
+    "epochs": 150,
+    "early_stop_patience": 10,
+    "early_stop_min_delta": 0.0,
+    "batch_size": 512,
+    "workers": 8,
+    "patch_radius": 0.05,
+    "pf_points_per_patch": 500,
+    "patches_per_shape": 7466,
+    "quality_batch_size": 4,
+    "quality_workers": 8,
+    "quality_prefetch_factor": 2,
+    "quality_pf_k": 128,
+    "quality_noisy_root": "/data/zhangzy/zzyy/PUNet/Gaussion/noisy",
+    "quality_clean_cloud_root": "/data/zhangzy/zzyy/PUNet/Gaussion/clean_normalized",
+    "quality_points_per_patch": 500,
+    "quality_centers_per_cloud": 100,
+    "quality_coverage_target": 0.95,
+    "quality_max_centers_per_cloud": 500,
+    "quality_work_root": "/data/zhangzy/zzyy/PointFilter_frozen_quality_stage3/_online_quality_work",
+    "quality_sigmas": "0.005,0.010,0.015,0.020,0.025",
+    "online_quality_samples_per_epoch": 0,
+    "quality_num_centers": 2048,
+    "quality_n_anchors": 16,
+    "quality_pf_chunk": 128,
+    "quality_clean_dir": "/data/zhangzy/zzyy/PUNet/Gaussion/shared_patches/clean",
+    "quality_qnet_summary": "/data/zhangzy/zzyy/PUNet/Gaussion/patch_quality_network/test_as_val_qnet_retrain_seed2026/run/summary.json",
+    "validation_pca_k": 24,
+    "lr": 0.0001,
+    "momentum": 0.9,
+    "support_multiple": 4.0,
+    "support_angle": 15.0,
+    "repulsion_alpha": 0.97,
+    "grad_clip": 1.0,
+    "seed": 2026,
+    "print_every": 100,
+    "val_print_every": 100,
+    "max_steps_per_epoch": 0,
+    "max_val_batches": 0,
+    "resume": false,
+    "device": "cuda",
+    "original_shape_split": "/data/zhangzy/zzyy/PUNet/Gaussion/manifests/shape_split_seed2026_train_test_overlap.json"
+  }
+}

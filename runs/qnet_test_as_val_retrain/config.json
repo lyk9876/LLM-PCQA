@@ -1,0 +1,63 @@
+{
+  "schema_version": "patch_qnet_test_as_validation_leakage_ablation_v1",
+  "evaluation_semantics": "Original 7-shape Test is intentionally used as Validation for checkpoint selection; original 6-shape Validation is the untouched holdout Test",
+  "quality_dimensions": [
+    "cleanliness",
+    "structure_fidelity",
+    "surface_fidelity",
+    "sampling_regularity",
+    "overall"
+  ],
+  "score_training_scale": "[0,1] via (score_1_5 - 1) / 4",
+  "score_reporting_scale": "[1,5]",
+  "student_input": "candidate-only points_raw",
+  "preprocessing": "points_raw - mean(points_raw, axis=0)",
+  "forbidden_preprocessing": [
+    "candidate PCA",
+    "unit-sphere normalization",
+    "clean-reference alignment"
+  ],
+  "loss": "L_real + 0.2 L_cf_cleanliness + 0.2 L_cf_structure",
+  "real_loss": "sum of five SmoothL1 factor means; Structure uses structure_mask",
+  "cf_clean_order": "clean > under_denoise > noisy",
+  "cf_structure_order": "PGD > smooth_mild > smooth_strong",
+  "manifests": {
+    "d_real": {
+      "path": "/data/zhangzy/zzyy/PUNet/Gaussion/patch_quality_network/test_as_val_qnet_retrain_seed2026/labels/d_real_mvp1032_test_as_val_seed2026.jsonl",
+      "sha256": "d262df6eebcb3b66ea01760e3cdd476e42c3885a745dd8ede2e3055f6a28575b"
+    },
+    "d_cf_cleanliness": {
+      "path": "/data/zhangzy/zzyy/PUNet/Gaussion/manifests/d_cf_cleanliness_ranking_train_v1.jsonl",
+      "sha256": "8e9ab1aad826d83909131e60f985937fef094f363f26d7baec41900732fcbf07"
+    },
+    "d_cf_structure": {
+      "path": "/data/zhangzy/zzyy/PUNet/Gaussion/manifests/d_cf_structure_ranking_train_v1.jsonl",
+      "sha256": "8a4cd1d63ba3466d3376508aa6958d61513e33fecff0532d170d8785105c0a89"
+    }
+  },
+  "config": {
+    "seed": 2026,
+    "epochs": 80,
+    "batch_size": 16,
+    "rank_batch_size": 8,
+    "workers": 0,
+    "learning_rate": 0.0002,
+    "weight_decay": 0.0001,
+    "rank_margin": 0.05,
+    "cf_clean_weight": 0.2,
+    "cf_structure_weight": 0.2,
+    "patience": 15,
+    "k": 16,
+    "query_heads": 4,
+    "graph_mode": "dynamic",
+    "query_interaction": true,
+    "amp": true
+  },
+  "device": "cuda",
+  "torch_version": "2.8.0+cu128",
+  "initialization": {
+    "checkpoint": "/data/zhangzy/zzyy/PUNet/Gaussion/patch_quality_network/runs/stage1_dcf_specialization_v1_seed2026/best_stage1_dcf_specialization_v1.pth",
+    "sha256": "7be464dc7fe02f5c774ced6b58f9073bd4e3ac6c5d27debf87276d76fbbd3103",
+    "role": "Stage-I D_cf factor-specialization initialization"
+  }
+}

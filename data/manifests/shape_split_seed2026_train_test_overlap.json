@@ -1,0 +1,52 @@
+{
+  "seed": 2026,
+  "train": [
+    "big_girl",
+    "block",
+    "boy01",
+    "boy02",
+    "bumpy_torus",
+    "ccylinder",
+    "child",
+    "chinese_lion",
+    "cone",
+    "cup",
+    "david",
+    "egea",
+    "ellipsoid",
+    "eros",
+    "fish",
+    "girl",
+    "hand",
+    "joint",
+    "julius",
+    "nicolo",
+    "pierrot",
+    "Pyramid",
+    "pyramid-1",
+    "screwdriver",
+    "sharp_sphere",
+    "special_cube",
+    "star",
+    "twirl",
+    "dino",
+    "gargoyle"
+  ],
+  "val": [
+    "armadillo",
+    "focal-octa",
+    "octa-flower",
+    "pulley",
+    "retinal",
+    "vaselion"
+  ],
+  "test": [
+    "bunny",
+    "cad",
+    "dino",
+    "gargoyle",
+    "rolling_stage",
+    "turbine_Lp",
+    "cup"
+  ]
+}

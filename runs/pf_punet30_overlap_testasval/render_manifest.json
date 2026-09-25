@@ -1,0 +1,1292 @@
+{
+  "scope": "7 Test shapes x 5 noise levels; full-cloud only; no ROI",
+  "source_visualizer": "/data/zhangzy/zzyy/\u5904\u7406\u4ee3\u7801/visualize_pdlts.py",
+  "render_parameters": {
+    "lake_rgb": [
+      0.25,
+      0.75,
+      0.7
+    ],
+    "image_size": 900,
+    "sphere_radius": 0.0075,
+    "fov": 25.0,
+    "camera_origin": [
+      4.0,
+      0.0,
+      2.0
+    ],
+    "camera_up": [
+      0.0,
+      0.0,
+      1.0
+    ],
+    "rotation_xyz": [
+      90.0,
+      270.0,
+      0.0
+    ],
+    "spp": 16
+  },
+  "cases": [
+    {
+      "shape": "bunny",
+      "sigma": "0.005",
+      "point_counts": {
+        "Noisy": 50000,
+        "Baseline": 50000,
+        "Ours": 50000,
+        "GT": 50000
+      },
+      "images": {
+        "Noisy": "/data/zhangzy/zzyy/PointFilter_frozen_quality_stage3/punet30_overlap_testasval_qnet_testasval_dynamic_fairsteps_seed2026/test_fullcloud_all/render/bunny/sigma_0.005/01_noisy.png",
+        "Baseline": "/data/zhangzy/zzyy/PointFilter_frozen_quality_stage3/punet30_overlap_testasval_qnet_testasval_dynamic_fairsteps_seed2026/test_fullcloud_all/render/bunny/sigma_0.005/02_baseline.png",
+        "Ours": "/data/zhangzy/zzyy/PointFilter_frozen_quality_stage3/punet30_overlap_testasval_qnet_testasval_dynamic_fairsteps_seed2026/test_fullcloud_all/render/bunny/sigma_0.005/03_ours.png",
+        "GT": "/data/zhangzy/zzyy/PointFilter_frozen_quality_stage3/punet30_overlap_testasval_qnet_testasval_dynamic_fairsteps_seed2026/test_fullcloud_all/render/bunny/sigma_0.005/04_gt.png"
+      },
+      "comparison": "/data/zhangzy/zzyy/PointFilter_frozen_quality_stage3/punet30_overlap_testasval_qnet_testasval_dynamic_fairsteps_seed2026/test_fullcloud_all/render/bunny/sigma_0.005/fullcloud_comparison.png",
+      "transform": {
+        "raw_center": [
+          -0.08215162999999998,
+          0.13916416999999998,
+          0.08159195999999999
+        ],
+        "raw_scale": 1.3216117600000001,
+        "display_center": [
+          8.326672684688674e-17,
+          2.7755575615628914e-17,
+          -2.7755575615628914e-17
+        ],
+        "display_scale": 1.0,
+        "rotation_xyz_degree": [
+          90.0,
+          270.0,
+          0.0
+        ]
+      }
+    },
+    {
+      "shape": "bunny",
+      "sigma": "0.010",
+      "point_counts": {
+        "Noisy": 50000,
+        "Baseline": 50000,
+        "Ours": 50000,
+        "GT": 50000
+      },
+      "images": {
+        "Noisy": "/data/zhangzy/zzyy/PointFilter_frozen_quality_stage3/punet30_overlap_testasval_qnet_testasval_dynamic_fairsteps_seed2026/test_fullcloud_all/render/bunny/sigma_0.010/01_noisy.png",
+        "Baseline": "/data/zhangzy/zzyy/PointFilter_frozen_quality_stage3/punet30_overlap_testasval_qnet_testasval_dynamic_fairsteps_seed2026/test_fullcloud_all/render/bunny/sigma_0.010/02_baseline.png",
+        "Ours": "/data/zhangzy/zzyy/PointFilter_frozen_quality_stage3/punet30_overlap_testasval_qnet_testasval_dynamic_fairsteps_seed2026/test_fullcloud_all/render/bunny/sigma_0.010/03_ours.png",
+        "GT": "/data/zhangzy/zzyy/PointFilter_frozen_quality_stage3/punet30_overlap_testasval_qnet_testasval_dynamic_fairsteps_seed2026/test_fullcloud_all/render/bunny/sigma_0.010/04_gt.png"
+      },
+      "comparison": "/data/zhangzy/zzyy/PointFilter_frozen_quality_stage3/punet30_overlap_testasval_qnet_testasval_dynamic_fairsteps_seed2026/test_fullcloud_all/render/bunny/sigma_0.010/fullcloud_comparison.png",
+      "transform": {
+        "raw_center": [
+          -0.08215162999999998,
+          0.13916416999999998,
+          0.08159195999999999
+        ],
+        "raw_scale": 1.3216117600000001,
+        "display_center": [
+          8.326672684688674e-17,
+          2.7755575615628914e-17,
+          -2.7755575615628914e-17
+        ],
+        "display_scale": 1.0,
+        "rotation_xyz_degree": [
+          90.0,
+          270.0,
+          0.0
+        ]
+      }
+    },
+    {
+      "shape": "bunny",
+      "sigma": "0.015",
+      "point_counts": {
+        "Noisy": 50000,
+        "Baseline": 50000,
+        "Ours": 50000,
+        "GT": 50000
+      },
+      "images": {
+        "Noisy": "/data/zhangzy/zzyy/PointFilter_frozen_quality_stage3/punet30_overlap_testasval_qnet_testasval_dynamic_fairsteps_seed2026/test_fullcloud_all/render/bunny/sigma_0.015/01_noisy.png",
+        "Baseline": "/data/zhangzy/zzyy/PointFilter_frozen_quality_stage3/punet30_overlap_testasval_qnet_testasval_dynamic_fairsteps_seed2026/test_fullcloud_all/render/bunny/sigma_0.015/02_baseline.png",
+        "Ours": "/data/zhangzy/zzyy/PointFilter_frozen_quality_stage3/punet30_overlap_testasval_qnet_testasval_dynamic_fairsteps_seed2026/test_fullcloud_all/render/bunny/sigma_0.015/03_ours.png",
+        "GT": "/data/zhangzy/zzyy/PointFilter_frozen_quality_stage3/punet30_overlap_testasval_qnet_testasval_dynamic_fairsteps_seed2026/test_fullcloud_all/render/bunny/sigma_0.015/04_gt.png"
+      },
+      "comparison": "/data/zhangzy/zzyy/PointFilter_frozen_quality_stage3/punet30_overlap_testasval_qnet_testasval_dynamic_fairsteps_seed2026/test_fullcloud_all/render/bunny/sigma_0.015/fullcloud_comparison.png",
+      "transform": {
+        "raw_center": [
+          -0.08215162999999998,
+          0.13916416999999998,
+          0.08159195999999999
+        ],
+        "raw_scale": 1.3216117600000001,
+        "display_center": [
+          8.326672684688674e-17,
+          2.7755575615628914e-17,
+          -2.7755575615628914e-17
+        ],
+        "display_scale": 1.0,
+        "rotation_xyz_degree": [
+          90.0,
+          270.0,
+          0.0
+        ]
+      }
+    },
+    {
+      "shape": "bunny",
+      "sigma": "0.020",
+      "point_counts": {
+        "Noisy": 50000,
+        "Baseline": 50000,
+        "Ours": 50000,
+        "GT": 50000
+      },
+      "images": {
+        "Noisy": "/data/zhangzy/zzyy/PointFilter_frozen_quality_stage3/punet30_overlap_testasval_qnet_testasval_dynamic_fairsteps_seed2026/test_fullcloud_all/render/bunny/sigma_0.020/01_noisy.png",
+        "Baseline": "/data/zhangzy/zzyy/PointFilter_frozen_quality_stage3/punet30_overlap_testasval_qnet_testasval_dynamic_fairsteps_seed2026/test_fullcloud_all/render/bunny/sigma_0.020/02_baseline.png",
+        "Ours": "/data/zhangzy/zzyy/PointFilter_frozen_quality_stage3/punet30_overlap_testasval_qnet_testasval_dynamic_fairsteps_seed2026/test_fullcloud_all/render/bunny/sigma_0.020/03_ours.png",
+        "GT": "/data/zhangzy/zzyy/PointFilter_frozen_quality_stage3/punet30_overlap_testasval_qnet_testasval_dynamic_fairsteps_seed2026/test_fullcloud_all/render/bunny/sigma_0.020/04_gt.png"
+      },
+      "comparison": "/data/zhangzy/zzyy/PointFilter_frozen_quality_stage3/punet30_overlap_testasval_qnet_testasval_dynamic_fairsteps_seed2026/test_fullcloud_all/render/bunny/sigma_0.020/fullcloud_comparison.png",
+      "transform": {
+        "raw_center": [
+          -0.08215162999999998,
+          0.13916416999999998,
+          0.08159195999999999
+        ],
+        "raw_scale": 1.3216117600000001,
+        "display_center": [
+          8.326672684688674e-17,
+          2.7755575615628914e-17,
+          -2.7755575615628914e-17
+        ],
+        "display_scale": 1.0,
+        "rotation_xyz_degree": [
+          90.0,
+          270.0,
+          0.0
+        ]
+      }
+    },
+    {
+      "shape": "bunny",
+      "sigma": "0.025",
+      "point_counts": {
+        "Noisy": 50000,
+        "Baseline": 50000,
+        "Ours": 50000,
+        "GT": 50000
+      },
+      "images": {
+        "Noisy": "/data/zhangzy/zzyy/PointFilter_frozen_quality_stage3/punet30_overlap_testasval_qnet_testasval_dynamic_fairsteps_seed2026/test_fullcloud_all/render/bunny/sigma_0.025/01_noisy.png",
+        "Baseline": "/data/zhangzy/zzyy/PointFilter_frozen_quality_stage3/punet30_overlap_testasval_qnet_testasval_dynamic_fairsteps_seed2026/test_fullcloud_all/render/bunny/sigma_0.025/02_baseline.png",
+        "Ours": "/data/zhangzy/zzyy/PointFilter_frozen_quality_stage3/punet30_overlap_testasval_qnet_testasval_dynamic_fairsteps_seed2026/test_fullcloud_all/render/bunny/sigma_0.025/03_ours.png",
+        "GT": "/data/zhangzy/zzyy/PointFilter_frozen_quality_stage3/punet30_overlap_testasval_qnet_testasval_dynamic_fairsteps_seed2026/test_fullcloud_all/render/bunny/sigma_0.025/04_gt.png"
+      },
+      "comparison": "/data/zhangzy/zzyy/PointFilter_frozen_quality_stage3/punet30_overlap_testasval_qnet_testasval_dynamic_fairsteps_seed2026/test_fullcloud_all/render/bunny/sigma_0.025/fullcloud_comparison.png",
+      "transform": {
+        "raw_center": [
+          -0.08215162999999998,
+          0.13916416999999998,
+          0.08159195999999999
+        ],
+        "raw_scale": 1.3216117600000001,
+        "display_center": [
+          8.326672684688674e-17,
+          2.7755575615628914e-17,
+          -2.7755575615628914e-17
+        ],
+        "display_scale": 1.0,
+        "rotation_xyz_degree": [
+          90.0,
+          270.0,
+          0.0
+        ]
+      }
+    },
+    {
+      "shape": "cad",
+      "sigma": "0.005",
+      "point_counts": {
+        "Noisy": 50000,
+        "Baseline": 50000,
+        "Ours": 50000,
+        "GT": 50000
+      },
+      "images": {
+        "Noisy": "/data/zhangzy/zzyy/PointFilter_frozen_quality_stage3/punet30_overlap_testasval_qnet_testasval_dynamic_fairsteps_seed2026/test_fullcloud_all/render/cad/sigma_0.005/01_noisy.png",
+        "Baseline": "/data/zhangzy/zzyy/PointFilter_frozen_quality_stage3/punet30_overlap_testasval_qnet_testasval_dynamic_fairsteps_seed2026/test_fullcloud_all/render/cad/sigma_0.005/02_baseline.png",
+        "Ours": "/data/zhangzy/zzyy/PointFilter_frozen_quality_stage3/punet30_overlap_testasval_qnet_testasval_dynamic_fairsteps_seed2026/test_fullcloud_all/render/cad/sigma_0.005/03_ours.png",
+        "GT": "/data/zhangzy/zzyy/PointFilter_frozen_quality_stage3/punet30_overlap_testasval_qnet_testasval_dynamic_fairsteps_seed2026/test_fullcloud_all/render/cad/sigma_0.005/04_gt.png"
+      },
+      "comparison": "/data/zhangzy/zzyy/PointFilter_frozen_quality_stage3/punet30_overlap_testasval_qnet_testasval_dynamic_fairsteps_seed2026/test_fullcloud_all/render/cad/sigma_0.005/fullcloud_comparison.png",
+      "transform": {
+        "raw_center": [
+          0.024226130000000012,
+          0.03985291499999999,
+          0.033961185000000005
+        ],
+        "raw_scale": 1.87751864,
+        "display_center": [
+          0.0,
+          -2.7755575615628914e-17,
+          0.0
+        ],
+        "display_scale": 1.0,
+        "rotation_xyz_degree": [
+          90.0,
+          270.0,
+          0.0
+        ]
+      }
+    },
+    {
+      "shape": "cad",
+      "sigma": "0.010",
+      "point_counts": {
+        "Noisy": 50000,
+        "Baseline": 50000,
+        "Ours": 50000,
+        "GT": 50000
+      },
+      "images": {
+        "Noisy": "/data/zhangzy/zzyy/PointFilter_frozen_quality_stage3/punet30_overlap_testasval_qnet_testasval_dynamic_fairsteps_seed2026/test_fullcloud_all/render/cad/sigma_0.010/01_noisy.png",
+        "Baseline": "/data/zhangzy/zzyy/PointFilter_frozen_quality_stage3/punet30_overlap_testasval_qnet_testasval_dynamic_fairsteps_seed2026/test_fullcloud_all/render/cad/sigma_0.010/02_baseline.png",
+        "Ours": "/data/zhangzy/zzyy/PointFilter_frozen_quality_stage3/punet30_overlap_testasval_qnet_testasval_dynamic_fairsteps_seed2026/test_fullcloud_all/render/cad/sigma_0.010/03_ours.png",
+        "GT": "/data/zhangzy/zzyy/PointFilter_frozen_quality_stage3/punet30_overlap_testasval_qnet_testasval_dynamic_fairsteps_seed2026/test_fullcloud_all/render/cad/sigma_0.010/04_gt.png"
+      },
+      "comparison": "/data/zhangzy/zzyy/PointFilter_frozen_quality_stage3/punet30_overlap_testasval_qnet_testasval_dynamic_fairsteps_seed2026/test_fullcloud_all/render/cad/sigma_0.010/fullcloud_comparison.png",
+      "transform": {
+        "raw_center": [
+          0.024226130000000012,
+          0.03985291499999999,
+          0.033961185000000005
+        ],
+        "raw_scale": 1.87751864,
+        "display_center": [
+          0.0,
+          -2.7755575615628914e-17,
+          0.0
+        ],
+        "display_scale": 1.0,
+        "rotation_xyz_degree": [
+          90.0,
+          270.0,
+          0.0
+        ]
+      }
+    },
+    {
+      "shape": "cad",
+      "sigma": "0.015",
+      "point_counts": {
+        "Noisy": 50000,
+        "Baseline": 50000,
+        "Ours": 50000,
+        "GT": 50000
+      },
+      "images": {
+        "Noisy": "/data/zhangzy/zzyy/PointFilter_frozen_quality_stage3/punet30_overlap_testasval_qnet_testasval_dynamic_fairsteps_seed2026/test_fullcloud_all/render/cad/sigma_0.015/01_noisy.png",
+        "Baseline": "/data/zhangzy/zzyy/PointFilter_frozen_quality_stage3/punet30_overlap_testasval_qnet_testasval_dynamic_fairsteps_seed2026/test_fullcloud_all/render/cad/sigma_0.015/02_baseline.png",
+        "Ours": "/data/zhangzy/zzyy/PointFilter_frozen_quality_stage3/punet30_overlap_testasval_qnet_testasval_dynamic_fairsteps_seed2026/test_fullcloud_all/render/cad/sigma_0.015/03_ours.png",
+        "GT": "/data/zhangzy/zzyy/PointFilter_frozen_quality_stage3/punet30_overlap_testasval_qnet_testasval_dynamic_fairsteps_seed2026/test_fullcloud_all/render/cad/sigma_0.015/04_gt.png"
+      },
+      "comparison": "/data/zhangzy/zzyy/PointFilter_frozen_quality_stage3/punet30_overlap_testasval_qnet_testasval_dynamic_fairsteps_seed2026/test_fullcloud_all/render/cad/sigma_0.015/fullcloud_comparison.png",
+      "transform": {
+        "raw_center": [
+          0.024226130000000012,
+          0.03985291499999999,
+          0.033961185000000005
+        ],
+        "raw_scale": 1.87751864,
+        "display_center": [
+          0.0,
+          -2.7755575615628914e-17,
+          0.0
+        ],
+        "display_scale": 1.0,
+        "rotation_xyz_degree": [
+          90.0,
+          270.0,
+          0.0
+        ]
+      }
+    },
+    {
+      "shape": "cad",
+      "sigma": "0.020",
+      "point_counts": {
+        "Noisy": 50000,
+        "Baseline": 50000,
+        "Ours": 50000,
+        "GT": 50000
+      },
+      "images": {
+        "Noisy": "/data/zhangzy/zzyy/PointFilter_frozen_quality_stage3/punet30_overlap_testasval_qnet_testasval_dynamic_fairsteps_seed2026/test_fullcloud_all/render/cad/sigma_0.020/01_noisy.png",
+        "Baseline": "/data/zhangzy/zzyy/PointFilter_frozen_quality_stage3/punet30_overlap_testasval_qnet_testasval_dynamic_fairsteps_seed2026/test_fullcloud_all/render/cad/sigma_0.020/02_baseline.png",
+        "Ours": "/data/zhangzy/zzyy/PointFilter_frozen_quality_stage3/punet30_overlap_testasval_qnet_testasval_dynamic_fairsteps_seed2026/test_fullcloud_all/render/cad/sigma_0.020/03_ours.png",
+        "GT": "/data/zhangzy/zzyy/PointFilter_frozen_quality_stage3/punet30_overlap_testasval_qnet_testasval_dynamic_fairsteps_seed2026/test_fullcloud_all/render/cad/sigma_0.020/04_gt.png"
+      },
+      "comparison": "/data/zhangzy/zzyy/PointFilter_frozen_quality_stage3/punet30_overlap_testasval_qnet_testasval_dynamic_fairsteps_seed2026/test_fullcloud_all/render/cad/sigma_0.020/fullcloud_comparison.png",
+      "transform": {
+        "raw_center": [
+          0.024226130000000012,
+          0.03985291499999999,
+          0.033961185000000005
+        ],
+        "raw_scale": 1.87751864,
+        "display_center": [
+          0.0,
+          -2.7755575615628914e-17,
+          0.0
+        ],
+        "display_scale": 1.0,
+        "rotation_xyz_degree": [
+          90.0,
+          270.0,
+          0.0
+        ]
+      }
+    },
+    {
+      "shape": "cad",
+      "sigma": "0.025",
+      "point_counts": {
+        "Noisy": 50000,
+        "Baseline": 50000,
+        "Ours": 50000,
+        "GT": 50000
+      },
+      "images": {
+        "Noisy": "/data/zhangzy/zzyy/PointFilter_frozen_quality_stage3/punet30_overlap_testasval_qnet_testasval_dynamic_fairsteps_seed2026/test_fullcloud_all/render/cad/sigma_0.025/01_noisy.png",
+        "Baseline": "/data/zhangzy/zzyy/PointFilter_frozen_quality_stage3/punet30_overlap_testasval_qnet_testasval_dynamic_fairsteps_seed2026/test_fullcloud_all/render/cad/sigma_0.025/02_baseline.png",
+        "Ours": "/data/zhangzy/zzyy/PointFilter_frozen_quality_stage3/punet30_overlap_testasval_qnet_testasval_dynamic_fairsteps_seed2026/test_fullcloud_all/render/cad/sigma_0.025/03_ours.png",
+        "GT": "/data/zhangzy/zzyy/PointFilter_frozen_quality_stage3/punet30_overlap_testasval_qnet_testasval_dynamic_fairsteps_seed2026/test_fullcloud_all/render/cad/sigma_0.025/04_gt.png"
+      },
+      "comparison": "/data/zhangzy/zzyy/PointFilter_frozen_quality_stage3/punet30_overlap_testasval_qnet_testasval_dynamic_fairsteps_seed2026/test_fullcloud_all/render/cad/sigma_0.025/fullcloud_comparison.png",
+      "transform": {
+        "raw_center": [
+          0.024226130000000012,
+          0.03985291499999999,
+          0.033961185000000005
+        ],
+        "raw_scale": 1.87751864,
+        "display_center": [
+          0.0,
+          -2.7755575615628914e-17,
+          0.0
+        ],
+        "display_scale": 1.0,
+        "rotation_xyz_degree": [
+          90.0,
+          270.0,
+          0.0
+        ]
+      }
+    },
+    {
+      "shape": "dino",
+      "sigma": "0.005",
+      "point_counts": {
+        "Noisy": 50000,
+        "Baseline": 50000,
+        "Ours": 50000,
+        "GT": 50000
+      },
+      "images": {
+        "Noisy": "/data/zhangzy/zzyy/PointFilter_frozen_quality_stage3/punet30_overlap_testasval_qnet_testasval_dynamic_fairsteps_seed2026/test_fullcloud_all/render/dino/sigma_0.005/01_noisy.png",
+        "Baseline": "/data/zhangzy/zzyy/PointFilter_frozen_quality_stage3/punet30_overlap_testasval_qnet_testasval_dynamic_fairsteps_seed2026/test_fullcloud_all/render/dino/sigma_0.005/02_baseline.png",
+        "Ours": "/data/zhangzy/zzyy/PointFilter_frozen_quality_stage3/punet30_overlap_testasval_qnet_testasval_dynamic_fairsteps_seed2026/test_fullcloud_all/render/dino/sigma_0.005/03_ours.png",
+        "GT": "/data/zhangzy/zzyy/PointFilter_frozen_quality_stage3/punet30_overlap_testasval_qnet_testasval_dynamic_fairsteps_seed2026/test_fullcloud_all/render/dino/sigma_0.005/04_gt.png"
+      },
+      "comparison": "/data/zhangzy/zzyy/PointFilter_frozen_quality_stage3/punet30_overlap_testasval_qnet_testasval_dynamic_fairsteps_seed2026/test_fullcloud_all/render/dino/sigma_0.005/fullcloud_comparison.png",
+      "transform": {
+        "raw_center": [
+          0.124034335,
+          0.029506254999999995,
+          -0.06543866999999998
+        ],
+        "raw_scale": 1.4902984899999998,
+        "display_center": [
+          0.0,
+          -5.551115123125783e-17,
+          5.551115123125783e-17
+        ],
+        "display_scale": 1.0000000000000002,
+        "rotation_xyz_degree": [
+          90.0,
+          270.0,
+          0.0
+        ]
+      }
+    },
+    {
+      "shape": "dino",
+      "sigma": "0.010",
+      "point_counts": {
+        "Noisy": 50000,
+        "Baseline": 50000,
+        "Ours": 50000,
+        "GT": 50000
+      },
+      "images": {
+        "Noisy": "/data/zhangzy/zzyy/PointFilter_frozen_quality_stage3/punet30_overlap_testasval_qnet_testasval_dynamic_fairsteps_seed2026/test_fullcloud_all/render/dino/sigma_0.010/01_noisy.png",
+        "Baseline": "/data/zhangzy/zzyy/PointFilter_frozen_quality_stage3/punet30_overlap_testasval_qnet_testasval_dynamic_fairsteps_seed2026/test_fullcloud_all/render/dino/sigma_0.010/02_baseline.png",
+        "Ours": "/data/zhangzy/zzyy/PointFilter_frozen_quality_stage3/punet30_overlap_testasval_qnet_testasval_dynamic_fairsteps_seed2026/test_fullcloud_all/render/dino/sigma_0.010/03_ours.png",
+        "GT": "/data/zhangzy/zzyy/PointFilter_frozen_quality_stage3/punet30_overlap_testasval_qnet_testasval_dynamic_fairsteps_seed2026/test_fullcloud_all/render/dino/sigma_0.010/04_gt.png"
+      },
+      "comparison": "/data/zhangzy/zzyy/PointFilter_frozen_quality_stage3/punet30_overlap_testasval_qnet_testasval_dynamic_fairsteps_seed2026/test_fullcloud_all/render/dino/sigma_0.010/fullcloud_comparison.png",
+      "transform": {
+        "raw_center": [
+          0.124034335,
+          0.029506254999999995,
+          -0.06543866999999998
+        ],
+        "raw_scale": 1.4902984899999998,
+        "display_center": [
+          0.0,
+          -5.551115123125783e-17,
+          5.551115123125783e-17
+        ],
+        "display_scale": 1.0000000000000002,
+        "rotation_xyz_degree": [
+          90.0,
+          270.0,
+          0.0
+        ]
+      }
+    },
+    {
+      "shape": "dino",
+      "sigma": "0.015",
+      "point_counts": {
+        "Noisy": 50000,
+        "Baseline": 50000,
+        "Ours": 50000,
+        "GT": 50000
+      },
+      "images": {
+        "Noisy": "/data/zhangzy/zzyy/PointFilter_frozen_quality_stage3/punet30_overlap_testasval_qnet_testasval_dynamic_fairsteps_seed2026/test_fullcloud_all/render/dino/sigma_0.015/01_noisy.png",
+        "Baseline": "/data/zhangzy/zzyy/PointFilter_frozen_quality_stage3/punet30_overlap_testasval_qnet_testasval_dynamic_fairsteps_seed2026/test_fullcloud_all/render/dino/sigma_0.015/02_baseline.png",
+        "Ours": "/data/zhangzy/zzyy/PointFilter_frozen_quality_stage3/punet30_overlap_testasval_qnet_testasval_dynamic_fairsteps_seed2026/test_fullcloud_all/render/dino/sigma_0.015/03_ours.png",
+        "GT": "/data/zhangzy/zzyy/PointFilter_frozen_quality_stage3/punet30_overlap_testasval_qnet_testasval_dynamic_fairsteps_seed2026/test_fullcloud_all/render/dino/sigma_0.015/04_gt.png"
+      },
+      "comparison": "/data/zhangzy/zzyy/PointFilter_frozen_quality_stage3/punet30_overlap_testasval_qnet_testasval_dynamic_fairsteps_seed2026/test_fullcloud_all/render/dino/sigma_0.015/fullcloud_comparison.png",
+      "transform": {
+        "raw_center": [
+          0.124034335,
+          0.029506254999999995,
+          -0.06543866999999998
+        ],
+        "raw_scale": 1.4902984899999998,
+        "display_center": [
+          0.0,
+          -5.551115123125783e-17,
+          5.551115123125783e-17
+        ],
+        "display_scale": 1.0000000000000002,
+        "rotation_xyz_degree": [
+          90.0,
+          270.0,
+          0.0
+        ]
+      }
+    },
+    {
+      "shape": "dino",
+      "sigma": "0.020",
+      "point_counts": {
+        "Noisy": 50000,
+        "Baseline": 50000,
+        "Ours": 50000,
+        "GT": 50000
+      },
+      "images": {
+        "Noisy": "/data/zhangzy/zzyy/PointFilter_frozen_quality_stage3/punet30_overlap_testasval_qnet_testasval_dynamic_fairsteps_seed2026/test_fullcloud_all/render/dino/sigma_0.020/01_noisy.png",
+        "Baseline": "/data/zhangzy/zzyy/PointFilter_frozen_quality_stage3/punet30_overlap_testasval_qnet_testasval_dynamic_fairsteps_seed2026/test_fullcloud_all/render/dino/sigma_0.020/02_baseline.png",
+        "Ours": "/data/zhangzy/zzyy/PointFilter_frozen_quality_stage3/punet30_overlap_testasval_qnet_testasval_dynamic_fairsteps_seed2026/test_fullcloud_all/render/dino/sigma_0.020/03_ours.png",
+        "GT": "/data/zhangzy/zzyy/PointFilter_frozen_quality_stage3/punet30_overlap_testasval_qnet_testasval_dynamic_fairsteps_seed2026/test_fullcloud_all/render/dino/sigma_0.020/04_gt.png"
+      },
+      "comparison": "/data/zhangzy/zzyy/PointFilter_frozen_quality_stage3/punet30_overlap_testasval_qnet_testasval_dynamic_fairsteps_seed2026/test_fullcloud_all/render/dino/sigma_0.020/fullcloud_comparison.png",
+      "transform": {
+        "raw_center": [
+          0.124034335,
+          0.029506254999999995,
+          -0.06543866999999998
+        ],
+        "raw_scale": 1.4902984899999998,
+        "display_center": [
+          0.0,
+          -5.551115123125783e-17,
+          5.551115123125783e-17
+        ],
+        "display_scale": 1.0000000000000002,
+        "rotation_xyz_degree": [
+          90.0,
+          270.0,
+          0.0
+        ]
+      }
+    },
+    {
+      "shape": "dino",
+      "sigma": "0.025",
+      "point_counts": {
+        "Noisy": 50000,
+        "Baseline": 50000,
+        "Ours": 50000,
+        "GT": 50000
+      },
+      "images": {
+        "Noisy": "/data/zhangzy/zzyy/PointFilter_frozen_quality_stage3/punet30_overlap_testasval_qnet_testasval_dynamic_fairsteps_seed2026/test_fullcloud_all/render/dino/sigma_0.025/01_noisy.png",
+        "Baseline": "/data/zhangzy/zzyy/PointFilter_frozen_quality_stage3/punet30_overlap_testasval_qnet_testasval_dynamic_fairsteps_seed2026/test_fullcloud_all/render/dino/sigma_0.025/02_baseline.png",
+        "Ours": "/data/zhangzy/zzyy/PointFilter_frozen_quality_stage3/punet30_overlap_testasval_qnet_testasval_dynamic_fairsteps_seed2026/test_fullcloud_all/render/dino/sigma_0.025/03_ours.png",
+        "GT": "/data/zhangzy/zzyy/PointFilter_frozen_quality_stage3/punet30_overlap_testasval_qnet_testasval_dynamic_fairsteps_seed2026/test_fullcloud_all/render/dino/sigma_0.025/04_gt.png"
+      },
+      "comparison": "/data/zhangzy/zzyy/PointFilter_frozen_quality_stage3/punet30_overlap_testasval_qnet_testasval_dynamic_fairsteps_seed2026/test_fullcloud_all/render/dino/sigma_0.025/fullcloud_comparison.png",
+      "transform": {
+        "raw_center": [
+          0.124034335,
+          0.029506254999999995,
+          -0.06543866999999998
+        ],
+        "raw_scale": 1.4902984899999998,
+        "display_center": [
+          0.0,
+          -5.551115123125783e-17,
+          5.551115123125783e-17
+        ],
+        "display_scale": 1.0000000000000002,
+        "rotation_xyz_degree": [
+          90.0,
+          270.0,
+          0.0
+        ]
+      }
+    },
+    {
+      "shape": "gargoyle",
+      "sigma": "0.005",
+      "point_counts": {
+        "Noisy": 50000,
+        "Baseline": 50000,
+        "Ours": 50000,
+        "GT": 50000
+      },
+      "images": {
+        "Noisy": "/data/zhangzy/zzyy/PointFilter_frozen_quality_stage3/punet30_overlap_testasval_qnet_testasval_dynamic_fairsteps_seed2026/test_fullcloud_all/render/gargoyle/sigma_0.005/01_noisy.png",
+        "Baseline": "/data/zhangzy/zzyy/PointFilter_frozen_quality_stage3/punet30_overlap_testasval_qnet_testasval_dynamic_fairsteps_seed2026/test_fullcloud_all/render/gargoyle/sigma_0.005/02_baseline.png",
+        "Ours": "/data/zhangzy/zzyy/PointFilter_frozen_quality_stage3/punet30_overlap_testasval_qnet_testasval_dynamic_fairsteps_seed2026/test_fullcloud_all/render/gargoyle/sigma_0.005/03_ours.png",
+        "GT": "/data/zhangzy/zzyy/PointFilter_frozen_quality_stage3/punet30_overlap_testasval_qnet_testasval_dynamic_fairsteps_seed2026/test_fullcloud_all/render/gargoyle/sigma_0.005/04_gt.png"
+      },
+      "comparison": "/data/zhangzy/zzyy/PointFilter_frozen_quality_stage3/punet30_overlap_testasval_qnet_testasval_dynamic_fairsteps_seed2026/test_fullcloud_all/render/gargoyle/sigma_0.005/fullcloud_comparison.png",
+      "transform": {
+        "raw_center": [
+          0.096538285,
+          -0.005321864999999981,
+          -0.026558305000000004
+        ],
+        "raw_scale": 1.54675363,
+        "display_center": [
+          2.7755575615628914e-17,
+          -2.7755575615628914e-17,
+          5.551115123125783e-17
+        ],
+        "display_scale": 1.0,
+        "rotation_xyz_degree": [
+          90.0,
+          270.0,
+          0.0
+        ]
+      }
+    },
+    {
+      "shape": "gargoyle",
+      "sigma": "0.010",
+      "point_counts": {
+        "Noisy": 50000,
+        "Baseline": 50000,
+        "Ours": 50000,
+        "GT": 50000
+      },
+      "images": {
+        "Noisy": "/data/zhangzy/zzyy/PointFilter_frozen_quality_stage3/punet30_overlap_testasval_qnet_testasval_dynamic_fairsteps_seed2026/test_fullcloud_all/render/gargoyle/sigma_0.010/01_noisy.png",
+        "Baseline": "/data/zhangzy/zzyy/PointFilter_frozen_quality_stage3/punet30_overlap_testasval_qnet_testasval_dynamic_fairsteps_seed2026/test_fullcloud_all/render/gargoyle/sigma_0.010/02_baseline.png",
+        "Ours": "/data/zhangzy/zzyy/PointFilter_frozen_quality_stage3/punet30_overlap_testasval_qnet_testasval_dynamic_fairsteps_seed2026/test_fullcloud_all/render/gargoyle/sigma_0.010/03_ours.png",
+        "GT": "/data/zhangzy/zzyy/PointFilter_frozen_quality_stage3/punet30_overlap_testasval_qnet_testasval_dynamic_fairsteps_seed2026/test_fullcloud_all/render/gargoyle/sigma_0.010/04_gt.png"
+      },
+      "comparison": "/data/zhangzy/zzyy/PointFilter_frozen_quality_stage3/punet30_overlap_testasval_qnet_testasval_dynamic_fairsteps_seed2026/test_fullcloud_all/render/gargoyle/sigma_0.010/fullcloud_comparison.png",
+      "transform": {
+        "raw_center": [
+          0.096538285,
+          -0.005321864999999981,
+          -0.026558305000000004
+        ],
+        "raw_scale": 1.54675363,
+        "display_center": [
+          2.7755575615628914e-17,
+          -2.7755575615628914e-17,
+          5.551115123125783e-17
+        ],
+        "display_scale": 1.0,
+        "rotation_xyz_degree": [
+          90.0,
+          270.0,
+          0.0
+        ]
+      }
+    },
+    {
+      "shape": "gargoyle",
+      "sigma": "0.015",
+      "point_counts": {
+        "Noisy": 50000,
+        "Baseline": 50000,
+        "Ours": 50000,
+        "GT": 50000
+      },
+      "images": {
+        "Noisy": "/data/zhangzy/zzyy/PointFilter_frozen_quality_stage3/punet30_overlap_testasval_qnet_testasval_dynamic_fairsteps_seed2026/test_fullcloud_all/render/gargoyle/sigma_0.015/01_noisy.png",
+        "Baseline": "/data/zhangzy/zzyy/PointFilter_frozen_quality_stage3/punet30_overlap_testasval_qnet_testasval_dynamic_fairsteps_seed2026/test_fullcloud_all/render/gargoyle/sigma_0.015/02_baseline.png",
+        "Ours": "/data/zhangzy/zzyy/PointFilter_frozen_quality_stage3/punet30_overlap_testasval_qnet_testasval_dynamic_fairsteps_seed2026/test_fullcloud_all/render/gargoyle/sigma_0.015/03_ours.png",
+        "GT": "/data/zhangzy/zzyy/PointFilter_frozen_quality_stage3/punet30_overlap_testasval_qnet_testasval_dynamic_fairsteps_seed2026/test_fullcloud_all/render/gargoyle/sigma_0.015/04_gt.png"
+      },
+      "comparison": "/data/zhangzy/zzyy/PointFilter_frozen_quality_stage3/punet30_overlap_testasval_qnet_testasval_dynamic_fairsteps_seed2026/test_fullcloud_all/render/gargoyle/sigma_0.015/fullcloud_comparison.png",
+      "transform": {
+        "raw_center": [
+          0.096538285,
+          -0.005321864999999981,
+          -0.026558305000000004
+        ],
+        "raw_scale": 1.54675363,
+        "display_center": [
+          2.7755575615628914e-17,
+          -2.7755575615628914e-17,
+          5.551115123125783e-17
+        ],
+        "display_scale": 1.0,
+        "rotation_xyz_degree": [
+          90.0,
+          270.0,
+          0.0
+        ]
+      }
+    },
+    {
+      "shape": "gargoyle",
+      "sigma": "0.020",
+      "point_counts": {
+        "Noisy": 50000,
+        "Baseline": 50000,
+        "Ours": 50000,
+        "GT": 50000
+      },
+      "images": {
+        "Noisy": "/data/zhangzy/zzyy/PointFilter_frozen_quality_stage3/punet30_overlap_testasval_qnet_testasval_dynamic_fairsteps_seed2026/test_fullcloud_all/render/gargoyle/sigma_0.020/01_noisy.png",
+        "Baseline": "/data/zhangzy/zzyy/PointFilter_frozen_quality_stage3/punet30_overlap_testasval_qnet_testasval_dynamic_fairsteps_seed2026/test_fullcloud_all/render/gargoyle/sigma_0.020/02_baseline.png",
+        "Ours": "/data/zhangzy/zzyy/PointFilter_frozen_quality_stage3/punet30_overlap_testasval_qnet_testasval_dynamic_fairsteps_seed2026/test_fullcloud_all/render/gargoyle/sigma_0.020/03_ours.png",
+        "GT": "/data/zhangzy/zzyy/PointFilter_frozen_quality_stage3/punet30_overlap_testasval_qnet_testasval_dynamic_fairsteps_seed2026/test_fullcloud_all/render/gargoyle/sigma_0.020/04_gt.png"
+      },
+      "comparison": "/data/zhangzy/zzyy/PointFilter_frozen_quality_stage3/punet30_overlap_testasval_qnet_testasval_dynamic_fairsteps_seed2026/test_fullcloud_all/render/gargoyle/sigma_0.020/fullcloud_comparison.png",
+      "transform": {
+        "raw_center": [
+          0.096538285,
+          -0.005321864999999981,
+          -0.026558305000000004
+        ],
+        "raw_scale": 1.54675363,
+        "display_center": [
+          2.7755575615628914e-17,
+          -2.7755575615628914e-17,
+          5.551115123125783e-17
+        ],
+        "display_scale": 1.0,
+        "rotation_xyz_degree": [
+          90.0,
+          270.0,
+          0.0
+        ]
+      }
+    },
+    {
+      "shape": "gargoyle",
+      "sigma": "0.025",
+      "point_counts": {
+        "Noisy": 50000,
+        "Baseline": 50000,
+        "Ours": 50000,
+        "GT": 50000
+      },
+      "images": {
+        "Noisy": "/data/zhangzy/zzyy/PointFilter_frozen_quality_stage3/punet30_overlap_testasval_qnet_testasval_dynamic_fairsteps_seed2026/test_fullcloud_all/render/gargoyle/sigma_0.025/01_noisy.png",
+        "Baseline": "/data/zhangzy/zzyy/PointFilter_frozen_quality_stage3/punet30_overlap_testasval_qnet_testasval_dynamic_fairsteps_seed2026/test_fullcloud_all/render/gargoyle/sigma_0.025/02_baseline.png",
+        "Ours": "/data/zhangzy/zzyy/PointFilter_frozen_quality_stage3/punet30_overlap_testasval_qnet_testasval_dynamic_fairsteps_seed2026/test_fullcloud_all/render/gargoyle/sigma_0.025/03_ours.png",
+        "GT": "/data/zhangzy/zzyy/PointFilter_frozen_quality_stage3/punet30_overlap_testasval_qnet_testasval_dynamic_fairsteps_seed2026/test_fullcloud_all/render/gargoyle/sigma_0.025/04_gt.png"
+      },
+      "comparison": "/data/zhangzy/zzyy/PointFilter_frozen_quality_stage3/punet30_overlap_testasval_qnet_testasval_dynamic_fairsteps_seed2026/test_fullcloud_all/render/gargoyle/sigma_0.025/fullcloud_comparison.png",
+      "transform": {
+        "raw_center": [
+          0.096538285,
+          -0.005321864999999981,
+          -0.026558305000000004
+        ],
+        "raw_scale": 1.54675363,
+        "display_center": [
+          2.7755575615628914e-17,
+          -2.7755575615628914e-17,
+          5.551115123125783e-17
+        ],
+        "display_scale": 1.0,
+        "rotation_xyz_degree": [
+          90.0,
+          270.0,
+          0.0
+        ]
+      }
+    },
+    {
+      "shape": "rolling_stage",
+      "sigma": "0.005",
+      "point_counts": {
+        "Noisy": 50000,
+        "Baseline": 50000,
+        "Ours": 50000,
+        "GT": 50000
+      },
+      "images": {
+        "Noisy": "/data/zhangzy/zzyy/PointFilter_frozen_quality_stage3/punet30_overlap_testasval_qnet_testasval_dynamic_fairsteps_seed2026/test_fullcloud_all/render/rolling_stage/sigma_0.005/01_noisy.png",
+        "Baseline": "/data/zhangzy/zzyy/PointFilter_frozen_quality_stage3/punet30_overlap_testasval_qnet_testasval_dynamic_fairsteps_seed2026/test_fullcloud_all/render/rolling_stage/sigma_0.005/02_baseline.png",
+        "Ours": "/data/zhangzy/zzyy/PointFilter_frozen_quality_stage3/punet30_overlap_testasval_qnet_testasval_dynamic_fairsteps_seed2026/test_fullcloud_all/render/rolling_stage/sigma_0.005/03_ours.png",
+        "GT": "/data/zhangzy/zzyy/PointFilter_frozen_quality_stage3/punet30_overlap_testasval_qnet_testasval_dynamic_fairsteps_seed2026/test_fullcloud_all/render/rolling_stage/sigma_0.005/04_gt.png"
+      },
+      "comparison": "/data/zhangzy/zzyy/PointFilter_frozen_quality_stage3/punet30_overlap_testasval_qnet_testasval_dynamic_fairsteps_seed2026/test_fullcloud_all/render/rolling_stage/sigma_0.005/fullcloud_comparison.png",
+      "transform": {
+        "raw_center": [
+          0.0013464350000000347,
+          0.00047139000000001596,
+          0.0013051149999999678
+        ],
+        "raw_scale": 1.9186677300000001,
+        "display_center": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "display_scale": 1.0,
+        "rotation_xyz_degree": [
+          90.0,
+          270.0,
+          0.0
+        ]
+      }
+    },
+    {
+      "shape": "rolling_stage",
+      "sigma": "0.010",
+      "point_counts": {
+        "Noisy": 50000,
+        "Baseline": 50000,
+        "Ours": 50000,
+        "GT": 50000
+      },
+      "images": {
+        "Noisy": "/data/zhangzy/zzyy/PointFilter_frozen_quality_stage3/punet30_overlap_testasval_qnet_testasval_dynamic_fairsteps_seed2026/test_fullcloud_all/render/rolling_stage/sigma_0.010/01_noisy.png",
+        "Baseline": "/data/zhangzy/zzyy/PointFilter_frozen_quality_stage3/punet30_overlap_testasval_qnet_testasval_dynamic_fairsteps_seed2026/test_fullcloud_all/render/rolling_stage/sigma_0.010/02_baseline.png",
+        "Ours": "/data/zhangzy/zzyy/PointFilter_frozen_quality_stage3/punet30_overlap_testasval_qnet_testasval_dynamic_fairsteps_seed2026/test_fullcloud_all/render/rolling_stage/sigma_0.010/03_ours.png",
+        "GT": "/data/zhangzy/zzyy/PointFilter_frozen_quality_stage3/punet30_overlap_testasval_qnet_testasval_dynamic_fairsteps_seed2026/test_fullcloud_all/render/rolling_stage/sigma_0.010/04_gt.png"
+      },
+      "comparison": "/data/zhangzy/zzyy/PointFilter_frozen_quality_stage3/punet30_overlap_testasval_qnet_testasval_dynamic_fairsteps_seed2026/test_fullcloud_all/render/rolling_stage/sigma_0.010/fullcloud_comparison.png",
+      "transform": {
+        "raw_center": [
+          0.0013464350000000347,
+          0.00047139000000001596,
+          0.0013051149999999678
+        ],
+        "raw_scale": 1.9186677300000001,
+        "display_center": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "display_scale": 1.0,
+        "rotation_xyz_degree": [
+          90.0,
+          270.0,
+          0.0
+        ]
+      }
+    },
+    {
+      "shape": "rolling_stage",
+      "sigma": "0.015",
+      "point_counts": {
+        "Noisy": 50000,
+        "Baseline": 50000,
+        "Ours": 50000,
+        "GT": 50000
+      },
+      "images": {
+        "Noisy": "/data/zhangzy/zzyy/PointFilter_frozen_quality_stage3/punet30_overlap_testasval_qnet_testasval_dynamic_fairsteps_seed2026/test_fullcloud_all/render/rolling_stage/sigma_0.015/01_noisy.png",
+        "Baseline": "/data/zhangzy/zzyy/PointFilter_frozen_quality_stage3/punet30_overlap_testasval_qnet_testasval_dynamic_fairsteps_seed2026/test_fullcloud_all/render/rolling_stage/sigma_0.015/02_baseline.png",
+        "Ours": "/data/zhangzy/zzyy/PointFilter_frozen_quality_stage3/punet30_overlap_testasval_qnet_testasval_dynamic_fairsteps_seed2026/test_fullcloud_all/render/rolling_stage/sigma_0.015/03_ours.png",
+        "GT": "/data/zhangzy/zzyy/PointFilter_frozen_quality_stage3/punet30_overlap_testasval_qnet_testasval_dynamic_fairsteps_seed2026/test_fullcloud_all/render/rolling_stage/sigma_0.015/04_gt.png"
+      },
+      "comparison": "/data/zhangzy/zzyy/PointFilter_frozen_quality_stage3/punet30_overlap_testasval_qnet_testasval_dynamic_fairsteps_seed2026/test_fullcloud_all/render/rolling_stage/sigma_0.015/fullcloud_comparison.png",
+      "transform": {
+        "raw_center": [
+          0.0013464350000000347,
+          0.00047139000000001596,
+          0.0013051149999999678
+        ],
+        "raw_scale": 1.9186677300000001,
+        "display_center": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "display_scale": 1.0,
+        "rotation_xyz_degree": [
+          90.0,
+          270.0,
+          0.0
+        ]
+      }
+    },
+    {
+      "shape": "rolling_stage",
+      "sigma": "0.020",
+      "point_counts": {
+        "Noisy": 50000,
+        "Baseline": 50000,
+        "Ours": 50000,
+        "GT": 50000
+      },
+      "images": {
+        "Noisy": "/data/zhangzy/zzyy/PointFilter_frozen_quality_stage3/punet30_overlap_testasval_qnet_testasval_dynamic_fairsteps_seed2026/test_fullcloud_all/render/rolling_stage/sigma_0.020/01_noisy.png",
+        "Baseline": "/data/zhangzy/zzyy/PointFilter_frozen_quality_stage3/punet30_overlap_testasval_qnet_testasval_dynamic_fairsteps_seed2026/test_fullcloud_all/render/rolling_stage/sigma_0.020/02_baseline.png",
+        "Ours": "/data/zhangzy/zzyy/PointFilter_frozen_quality_stage3/punet30_overlap_testasval_qnet_testasval_dynamic_fairsteps_seed2026/test_fullcloud_all/render/rolling_stage/sigma_0.020/03_ours.png",
+        "GT": "/data/zhangzy/zzyy/PointFilter_frozen_quality_stage3/punet30_overlap_testasval_qnet_testasval_dynamic_fairsteps_seed2026/test_fullcloud_all/render/rolling_stage/sigma_0.020/04_gt.png"
+      },
+      "comparison": "/data/zhangzy/zzyy/PointFilter_frozen_quality_stage3/punet30_overlap_testasval_qnet_testasval_dynamic_fairsteps_seed2026/test_fullcloud_all/render/rolling_stage/sigma_0.020/fullcloud_comparison.png",
+      "transform": {
+        "raw_center": [
+          0.0013464350000000347,
+          0.00047139000000001596,
+          0.0013051149999999678
+        ],
+        "raw_scale": 1.9186677300000001,
+        "display_center": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "display_scale": 1.0,
+        "rotation_xyz_degree": [
+          90.0,
+          270.0,
+          0.0
+        ]
+      }
+    },
+    {
+      "shape": "rolling_stage",
+      "sigma": "0.025",
+      "point_counts": {
+        "Noisy": 50000,
+        "Baseline": 50000,
+        "Ours": 50000,
+        "GT": 50000
+      },
+      "images": {
+        "Noisy": "/data/zhangzy/zzyy/PointFilter_frozen_quality_stage3/punet30_overlap_testasval_qnet_testasval_dynamic_fairsteps_seed2026/test_fullcloud_all/render/rolling_stage/sigma_0.025/01_noisy.png",
+        "Baseline": "/data/zhangzy/zzyy/PointFilter_frozen_quality_stage3/punet30_overlap_testasval_qnet_testasval_dynamic_fairsteps_seed2026/test_fullcloud_all/render/rolling_stage/sigma_0.025/02_baseline.png",
+        "Ours": "/data/zhangzy/zzyy/PointFilter_frozen_quality_stage3/punet30_overlap_testasval_qnet_testasval_dynamic_fairsteps_seed2026/test_fullcloud_all/render/rolling_stage/sigma_0.025/03_ours.png",
+        "GT": "/data/zhangzy/zzyy/PointFilter_frozen_quality_stage3/punet30_overlap_testasval_qnet_testasval_dynamic_fairsteps_seed2026/test_fullcloud_all/render/rolling_stage/sigma_0.025/04_gt.png"
+      },
+      "comparison": "/data/zhangzy/zzyy/PointFilter_frozen_quality_stage3/punet30_overlap_testasval_qnet_testasval_dynamic_fairsteps_seed2026/test_fullcloud_all/render/rolling_stage/sigma_0.025/fullcloud_comparison.png",
+      "transform": {
+        "raw_center": [
+          0.0013464350000000347,
+          0.00047139000000001596,
+          0.0013051149999999678
+        ],
+        "raw_scale": 1.9186677300000001,
+        "display_center": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "display_scale": 1.0,
+        "rotation_xyz_degree": [
+          90.0,
+          270.0,
+          0.0
+        ]
+      }
+    },
+    {
+      "shape": "turbine_Lp",
+      "sigma": "0.005",
+      "point_counts": {
+        "Noisy": 50000,
+        "Baseline": 50000,
+        "Ours": 50000,
+        "GT": 50000
+      },
+      "images": {
+        "Noisy": "/data/zhangzy/zzyy/PointFilter_frozen_quality_stage3/punet30_overlap_testasval_qnet_testasval_dynamic_fairsteps_seed2026/test_fullcloud_all/render/turbine_Lp/sigma_0.005/01_noisy.png",
+        "Baseline": "/data/zhangzy/zzyy/PointFilter_frozen_quality_stage3/punet30_overlap_testasval_qnet_testasval_dynamic_fairsteps_seed2026/test_fullcloud_all/render/turbine_Lp/sigma_0.005/02_baseline.png",
+        "Ours": "/data/zhangzy/zzyy/PointFilter_frozen_quality_stage3/punet30_overlap_testasval_qnet_testasval_dynamic_fairsteps_seed2026/test_fullcloud_all/render/turbine_Lp/sigma_0.005/03_ours.png",
+        "GT": "/data/zhangzy/zzyy/PointFilter_frozen_quality_stage3/punet30_overlap_testasval_qnet_testasval_dynamic_fairsteps_seed2026/test_fullcloud_all/render/turbine_Lp/sigma_0.005/04_gt.png"
+      },
+      "comparison": "/data/zhangzy/zzyy/PointFilter_frozen_quality_stage3/punet30_overlap_testasval_qnet_testasval_dynamic_fairsteps_seed2026/test_fullcloud_all/render/turbine_Lp/sigma_0.005/fullcloud_comparison.png",
+      "transform": {
+        "raw_center": [
+          -0.08005695000000002,
+          -0.00022239999999995597,
+          8.414000000001032e-05
+        ],
+        "raw_scale": 1.9876874,
+        "display_center": [
+          -4.163336342344337e-17,
+          0.0,
+          0.0
+        ],
+        "display_scale": 1.0,
+        "rotation_xyz_degree": [
+          90.0,
+          270.0,
+          0.0
+        ]
+      }
+    },
+    {
+      "shape": "turbine_Lp",
+      "sigma": "0.010",
+      "point_counts": {
+        "Noisy": 50000,
+        "Baseline": 50000,
+        "Ours": 50000,
+        "GT": 50000
+      },
+      "images": {
+        "Noisy": "/data/zhangzy/zzyy/PointFilter_frozen_quality_stage3/punet30_overlap_testasval_qnet_testasval_dynamic_fairsteps_seed2026/test_fullcloud_all/render/turbine_Lp/sigma_0.010/01_noisy.png",
+        "Baseline": "/data/zhangzy/zzyy/PointFilter_frozen_quality_stage3/punet30_overlap_testasval_qnet_testasval_dynamic_fairsteps_seed2026/test_fullcloud_all/render/turbine_Lp/sigma_0.010/02_baseline.png",
+        "Ours": "/data/zhangzy/zzyy/PointFilter_frozen_quality_stage3/punet30_overlap_testasval_qnet_testasval_dynamic_fairsteps_seed2026/test_fullcloud_all/render/turbine_Lp/sigma_0.010/03_ours.png",
+        "GT": "/data/zhangzy/zzyy/PointFilter_frozen_quality_stage3/punet30_overlap_testasval_qnet_testasval_dynamic_fairsteps_seed2026/test_fullcloud_all/render/turbine_Lp/sigma_0.010/04_gt.png"
+      },
+      "comparison": "/data/zhangzy/zzyy/PointFilter_frozen_quality_stage3/punet30_overlap_testasval_qnet_testasval_dynamic_fairsteps_seed2026/test_fullcloud_all/render/turbine_Lp/sigma_0.010/fullcloud_comparison.png",
+      "transform": {
+        "raw_center": [
+          -0.08005695000000002,
+          -0.00022239999999995597,
+          8.414000000001032e-05
+        ],
+        "raw_scale": 1.9876874,
+        "display_center": [
+          -4.163336342344337e-17,
+          0.0,
+          0.0
+        ],
+        "display_scale": 1.0,
+        "rotation_xyz_degree": [
+          90.0,
+          270.0,
+          0.0
+        ]
+      }
+    },
+    {
+      "shape": "turbine_Lp",
+      "sigma": "0.015",
+      "point_counts": {
+        "Noisy": 50000,
+        "Baseline": 50000,
+        "Ours": 50000,
+        "GT": 50000
+      },
+      "images": {
+        "Noisy": "/data/zhangzy/zzyy/PointFilter_frozen_quality_stage3/punet30_overlap_testasval_qnet_testasval_dynamic_fairsteps_seed2026/test_fullcloud_all/render/turbine_Lp/sigma_0.015/01_noisy.png",
+        "Baseline": "/data/zhangzy/zzyy/PointFilter_frozen_quality_stage3/punet30_overlap_testasval_qnet_testasval_dynamic_fairsteps_seed2026/test_fullcloud_all/render/turbine_Lp/sigma_0.015/02_baseline.png",
+        "Ours": "/data/zhangzy/zzyy/PointFilter_frozen_quality_stage3/punet30_overlap_testasval_qnet_testasval_dynamic_fairsteps_seed2026/test_fullcloud_all/render/turbine_Lp/sigma_0.015/03_ours.png",
+        "GT": "/data/zhangzy/zzyy/PointFilter_frozen_quality_stage3/punet30_overlap_testasval_qnet_testasval_dynamic_fairsteps_seed2026/test_fullcloud_all/render/turbine_Lp/sigma_0.015/04_gt.png"
+      },
+      "comparison": "/data/zhangzy/zzyy/PointFilter_frozen_quality_stage3/punet30_overlap_testasval_qnet_testasval_dynamic_fairsteps_seed2026/test_fullcloud_all/render/turbine_Lp/sigma_0.015/fullcloud_comparison.png",
+      "transform": {
+        "raw_center": [
+          -0.08005695000000002,
+          -0.00022239999999995597,
+          8.414000000001032e-05
+        ],
+        "raw_scale": 1.9876874,
+        "display_center": [
+          -4.163336342344337e-17,
+          0.0,
+          0.0
+        ],
+        "display_scale": 1.0,
+        "rotation_xyz_degree": [
+          90.0,
+          270.0,
+          0.0
+        ]
+      }
+    },
+    {
+      "shape": "turbine_Lp",
+      "sigma": "0.020",
+      "point_counts": {
+        "Noisy": 50000,
+        "Baseline": 50000,
+        "Ours": 50000,
+        "GT": 50000
+      },
+      "images": {
+        "Noisy": "/data/zhangzy/zzyy/PointFilter_frozen_quality_stage3/punet30_overlap_testasval_qnet_testasval_dynamic_fairsteps_seed2026/test_fullcloud_all/render/turbine_Lp/sigma_0.020/01_noisy.png",
+        "Baseline": "/data/zhangzy/zzyy/PointFilter_frozen_quality_stage3/punet30_overlap_testasval_qnet_testasval_dynamic_fairsteps_seed2026/test_fullcloud_all/render/turbine_Lp/sigma_0.020/02_baseline.png",
+        "Ours": "/data/zhangzy/zzyy/PointFilter_frozen_quality_stage3/punet30_overlap_testasval_qnet_testasval_dynamic_fairsteps_seed2026/test_fullcloud_all/render/turbine_Lp/sigma_0.020/03_ours.png",
+        "GT": "/data/zhangzy/zzyy/PointFilter_frozen_quality_stage3/punet30_overlap_testasval_qnet_testasval_dynamic_fairsteps_seed2026/test_fullcloud_all/render/turbine_Lp/sigma_0.020/04_gt.png"
+      },
+      "comparison": "/data/zhangzy/zzyy/PointFilter_frozen_quality_stage3/punet30_overlap_testasval_qnet_testasval_dynamic_fairsteps_seed2026/test_fullcloud_all/render/turbine_Lp/sigma_0.020/fullcloud_comparison.png",
+      "transform": {
+        "raw_center": [
+          -0.08005695000000002,
+          -0.00022239999999995597,
+          8.414000000001032e-05
+        ],
+        "raw_scale": 1.9876874,
+        "display_center": [
+          -4.163336342344337e-17,
+          0.0,
+          0.0
+        ],
+        "display_scale": 1.0,
+        "rotation_xyz_degree": [
+          90.0,
+          270.0,
+          0.0
+        ]
+      }
+    },
+    {
+      "shape": "turbine_Lp",
+      "sigma": "0.025",
+      "point_counts": {
+        "Noisy": 50000,
+        "Baseline": 50000,
+        "Ours": 50000,
+        "GT": 50000
+      },
+      "images": {
+        "Noisy": "/data/zhangzy/zzyy/PointFilter_frozen_quality_stage3/punet30_overlap_testasval_qnet_testasval_dynamic_fairsteps_seed2026/test_fullcloud_all/render/turbine_Lp/sigma_0.025/01_noisy.png",
+        "Baseline": "/data/zhangzy/zzyy/PointFilter_frozen_quality_stage3/punet30_overlap_testasval_qnet_testasval_dynamic_fairsteps_seed2026/test_fullcloud_all/render/turbine_Lp/sigma_0.025/02_baseline.png",
+        "Ours": "/data/zhangzy/zzyy/PointFilter_frozen_quality_stage3/punet30_overlap_testasval_qnet_testasval_dynamic_fairsteps_seed2026/test_fullcloud_all/render/turbine_Lp/sigma_0.025/03_ours.png",
+        "GT": "/data/zhangzy/zzyy/PointFilter_frozen_quality_stage3/punet30_overlap_testasval_qnet_testasval_dynamic_fairsteps_seed2026/test_fullcloud_all/render/turbine_Lp/sigma_0.025/04_gt.png"
+      },
+      "comparison": "/data/zhangzy/zzyy/PointFilter_frozen_quality_stage3/punet30_overlap_testasval_qnet_testasval_dynamic_fairsteps_seed2026/test_fullcloud_all/render/turbine_Lp/sigma_0.025/fullcloud_comparison.png",
+      "transform": {
+        "raw_center": [
+          -0.08005695000000002,
+          -0.00022239999999995597,
+          8.414000000001032e-05
+        ],
+        "raw_scale": 1.9876874,
+        "display_center": [
+          -4.163336342344337e-17,
+          0.0,
+          0.0
+        ],
+        "display_scale": 1.0,
+        "rotation_xyz_degree": [
+          90.0,
+          270.0,
+          0.0
+        ]
+      }
+    },
+    {
+      "shape": "cup",
+      "sigma": "0.005",
+      "point_counts": {
+        "Noisy": 50000,
+        "Baseline": 50000,
+        "Ours": 50000,
+        "GT": 50000
+      },
+      "images": {
+        "Noisy": "/data/zhangzy/zzyy/PointFilter_frozen_quality_stage3/punet30_overlap_testasval_qnet_testasval_dynamic_fairsteps_seed2026/test_fullcloud_all/render/cup/sigma_0.005/01_noisy.png",
+        "Baseline": "/data/zhangzy/zzyy/PointFilter_frozen_quality_stage3/punet30_overlap_testasval_qnet_testasval_dynamic_fairsteps_seed2026/test_fullcloud_all/render/cup/sigma_0.005/02_baseline.png",
+        "Ours": "/data/zhangzy/zzyy/PointFilter_frozen_quality_stage3/punet30_overlap_testasval_qnet_testasval_dynamic_fairsteps_seed2026/test_fullcloud_all/render/cup/sigma_0.005/03_ours.png",
+        "GT": "/data/zhangzy/zzyy/PointFilter_frozen_quality_stage3/punet30_overlap_testasval_qnet_testasval_dynamic_fairsteps_seed2026/test_fullcloud_all/render/cup/sigma_0.005/04_gt.png"
+      },
+      "comparison": "/data/zhangzy/zzyy/PointFilter_frozen_quality_stage3/punet30_overlap_testasval_qnet_testasval_dynamic_fairsteps_seed2026/test_fullcloud_all/render/cup/sigma_0.005/fullcloud_comparison.png",
+      "transform": {
+        "raw_center": [
+          0.0002763499999999808,
+          -0.00027628499999998724,
+          0.13509529000000003
+        ],
+        "raw_scale": 1.7296333000000002,
+        "display_center": [
+          0.0,
+          0.0,
+          2.7755575615628914e-17
+        ],
+        "display_scale": 1.0,
+        "rotation_xyz_degree": [
+          90.0,
+          270.0,
+          0.0
+        ]
+      }
+    },
+    {
+      "shape": "cup",
+      "sigma": "0.010",
+      "point_counts": {
+        "Noisy": 50000,
+        "Baseline": 50000,
+        "Ours": 50000,
+        "GT": 50000
+      },
+      "images": {
+        "Noisy": "/data/zhangzy/zzyy/PointFilter_frozen_quality_stage3/punet30_overlap_testasval_qnet_testasval_dynamic_fairsteps_seed2026/test_fullcloud_all/render/cup/sigma_0.010/01_noisy.png",
+        "Baseline": "/data/zhangzy/zzyy/PointFilter_frozen_quality_stage3/punet30_overlap_testasval_qnet_testasval_dynamic_fairsteps_seed2026/test_fullcloud_all/render/cup/sigma_0.010/02_baseline.png",
+        "Ours": "/data/zhangzy/zzyy/PointFilter_frozen_quality_stage3/punet30_overlap_testasval_qnet_testasval_dynamic_fairsteps_seed2026/test_fullcloud_all/render/cup/sigma_0.010/03_ours.png",
+        "GT": "/data/zhangzy/zzyy/PointFilter_frozen_quality_stage3/punet30_overlap_testasval_qnet_testasval_dynamic_fairsteps_seed2026/test_fullcloud_all/render/cup/sigma_0.010/04_gt.png"
+      },
+      "comparison": "/data/zhangzy/zzyy/PointFilter_frozen_quality_stage3/punet30_overlap_testasval_qnet_testasval_dynamic_fairsteps_seed2026/test_fullcloud_all/render/cup/sigma_0.010/fullcloud_comparison.png",
+      "transform": {
+        "raw_center": [
+          0.0002763499999999808,
+          -0.00027628499999998724,
+          0.13509529000000003
+        ],
+        "raw_scale": 1.7296333000000002,
+        "display_center": [
+          0.0,
+          0.0,
+          2.7755575615628914e-17
+        ],
+        "display_scale": 1.0,
+        "rotation_xyz_degree": [
+          90.0,
+          270.0,
+          0.0
+        ]
+      }
+    },
+    {
+      "shape": "cup",
+      "sigma": "0.015",
+      "point_counts": {
+        "Noisy": 50000,
+        "Baseline": 50000,
+        "Ours": 50000,
+        "GT": 50000
+      },
+      "images": {
+        "Noisy": "/data/zhangzy/zzyy/PointFilter_frozen_quality_stage3/punet30_overlap_testasval_qnet_testasval_dynamic_fairsteps_seed2026/test_fullcloud_all/render/cup/sigma_0.015/01_noisy.png",
+        "Baseline": "/data/zhangzy/zzyy/PointFilter_frozen_quality_stage3/punet30_overlap_testasval_qnet_testasval_dynamic_fairsteps_seed2026/test_fullcloud_all/render/cup/sigma_0.015/02_baseline.png",
+        "Ours": "/data/zhangzy/zzyy/PointFilter_frozen_quality_stage3/punet30_overlap_testasval_qnet_testasval_dynamic_fairsteps_seed2026/test_fullcloud_all/render/cup/sigma_0.015/03_ours.png",
+        "GT": "/data/zhangzy/zzyy/PointFilter_frozen_quality_stage3/punet30_overlap_testasval_qnet_testasval_dynamic_fairsteps_seed2026/test_fullcloud_all/render/cup/sigma_0.015/04_gt.png"
+      },
+      "comparison": "/data/zhangzy/zzyy/PointFilter_frozen_quality_stage3/punet30_overlap_testasval_qnet_testasval_dynamic_fairsteps_seed2026/test_fullcloud_all/render/cup/sigma_0.015/fullcloud_comparison.png",
+      "transform": {
+        "raw_center": [
+          0.0002763499999999808,
+          -0.00027628499999998724,
+          0.13509529000000003
+        ],
+        "raw_scale": 1.7296333000000002,
+        "display_center": [
+          0.0,
+          0.0,
+          2.7755575615628914e-17
+        ],
+        "display_scale": 1.0,
+        "rotation_xyz_degree": [
+          90.0,
+          270.0,
+          0.0
+        ]
+      }
+    },
+    {
+      "shape": "cup",
+      "sigma": "0.020",
+      "point_counts": {
+        "Noisy": 50000,
+        "Baseline": 50000,
+        "Ours": 50000,
+        "GT": 50000
+      },
+      "images": {
+        "Noisy": "/data/zhangzy/zzyy/PointFilter_frozen_quality_stage3/punet30_overlap_testasval_qnet_testasval_dynamic_fairsteps_seed2026/test_fullcloud_all/render/cup/sigma_0.020/01_noisy.png",
+        "Baseline": "/data/zhangzy/zzyy/PointFilter_frozen_quality_stage3/punet30_overlap_testasval_qnet_testasval_dynamic_fairsteps_seed2026/test_fullcloud_all/render/cup/sigma_0.020/02_baseline.png",
+        "Ours": "/data/zhangzy/zzyy/PointFilter_frozen_quality_stage3/punet30_overlap_testasval_qnet_testasval_dynamic_fairsteps_seed2026/test_fullcloud_all/render/cup/sigma_0.020/03_ours.png",
+        "GT": "/data/zhangzy/zzyy/PointFilter_frozen_quality_stage3/punet30_overlap_testasval_qnet_testasval_dynamic_fairsteps_seed2026/test_fullcloud_all/render/cup/sigma_0.020/04_gt.png"
+      },
+      "comparison": "/data/zhangzy/zzyy/PointFilter_frozen_quality_stage3/punet30_overlap_testasval_qnet_testasval_dynamic_fairsteps_seed2026/test_fullcloud_all/render/cup/sigma_0.020/fullcloud_comparison.png",
+      "transform": {
+        "raw_center": [
+          0.0002763499999999808,
+          -0.00027628499999998724,
+          0.13509529000000003
+        ],
+        "raw_scale": 1.7296333000000002,
+        "display_center": [
+          0.0,
+          0.0,
+          2.7755575615628914e-17
+        ],
+        "display_scale": 1.0,
+        "rotation_xyz_degree": [
+          90.0,
+          270.0,
+          0.0
+        ]
+      }
+    },
+    {
+      "shape": "cup",
+      "sigma": "0.025",
+      "point_counts": {
+        "Noisy": 50000,
+        "Baseline": 50000,
+        "Ours": 50000,
+        "GT": 50000
+      },
+      "images": {
+        "Noisy": "/data/zhangzy/zzyy/PointFilter_frozen_quality_stage3/punet30_overlap_testasval_qnet_testasval_dynamic_fairsteps_seed2026/test_fullcloud_all/render/cup/sigma_0.025/01_noisy.png",
+        "Baseline": "/data/zhangzy/zzyy/PointFilter_frozen_quality_stage3/punet30_overlap_testasval_qnet_testasval_dynamic_fairsteps_seed2026/test_fullcloud_all/render/cup/sigma_0.025/02_baseline.png",
+        "Ours": "/data/zhangzy/zzyy/PointFilter_frozen_quality_stage3/punet30_overlap_testasval_qnet_testasval_dynamic_fairsteps_seed2026/test_fullcloud_all/render/cup/sigma_0.025/03_ours.png",
+        "GT": "/data/zhangzy/zzyy/PointFilter_frozen_quality_stage3/punet30_overlap_testasval_qnet_testasval_dynamic_fairsteps_seed2026/test_fullcloud_all/render/cup/sigma_0.025/04_gt.png"
+      },
+      "comparison": "/data/zhangzy/zzyy/PointFilter_frozen_quality_stage3/punet30_overlap_testasval_qnet_testasval_dynamic_fairsteps_seed2026/test_fullcloud_all/render/cup/sigma_0.025/fullcloud_comparison.png",
+      "transform": {
+        "raw_center": [
+          0.0002763499999999808,
+          -0.00027628499999998724,
+          0.13509529000000003
+        ],
+        "raw_scale": 1.7296333000000002,
+        "display_center": [
+          0.0,
+          0.0,
+          2.7755575615628914e-17
+        ],
+        "display_scale": 1.0,
+        "rotation_xyz_degree": [
+          90.0,
+          270.0,
+          0.0
+        ]
+      }
+    }
+  ]
+}
